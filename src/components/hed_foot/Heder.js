@@ -1,6 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import '../styles/heder.css';
 import logo from '../../image/logo.ico';
+import Home from '../home/Home'
+import { Route, HashRouter, Link, Switch } from "react-router-dom";
+
 export default class Heder extends Component {
   constructor(props) {
     super(props);
@@ -16,24 +19,44 @@ export default class Heder extends Component {
   render() {
     const toggle = this.state.toggle
     return (
-      <div>
+      <HashRouter>
         <div className={toggle == true ? "responsive topnav" : "topnav"}>
           <div className="logoContainer"> <img src={logo} class="logo" /></div>
           <div className="barContent">
-            <a href="#home" className="active">الرئيسية</a>
-            <a href="#news">عن الجمعية</a>
-            <a href="#contact">الاخبار</a>
-            <a href="#contact">الفرق التطوعية</a>
-            <a href="#contact">السياسات والحوكمة</a>
+            <Link to="/" className="active">الرئيسية</Link>
+            <Link to="#news">عن الجمعية</Link>
+            <Link to="#contact">الاخبار</Link>
+            <Link to="#contact">الفرق التطوعية</Link>
+            <Link to="#contact">السياسات والحوكمة</Link>
             <div className="dropdown">
               <button className="dropbtn">تسجيل الدخول
                 <i className="fa fa-caret-down"></i>
               </button>
             </div>
           </div>
-          <a className="icon" onClick={() => this.togglehandler()} >&#9776;</a>
+          <Link className="icon" onClick={() => this.togglehandler()} >&#9776;</Link>
         </div>
-      </div>
+        <Switch>
+          <Route
+            exact={true}
+            path="/"
+            component={Home}
+          ></Route>
+          {/* <Route
+            path="/StudentHeader/StudentProfile"
+            component={StudentProfile}
+          ></Route>
+          <Route
+            path="/StudentHeader/StudentProfile"
+            component={StudentHome}
+          ></Route>
+          <Route
+            path="/StudentHeader/displayAllTable"
+            component={displayAllTable}
+          ></Route> */}
+        </Switch>
+      </HashRouter>
+      
     )
   }
 }

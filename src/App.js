@@ -1,11 +1,13 @@
 import './App.css';
 import Heder from './components/hed_foot/Heder';
-import Home from './components/home/Home'
+import { Route, HashRouter, Switch } from "react-router-dom";
+
 function App() {
   return (
     <div className="home">
-      <Heder />
-      <Home />
+      <HashRouter  basename="/ataa">
+       <Route path={'/'} exact component={Heder} />
+    </HashRouter>
     </div>
   );
 }
