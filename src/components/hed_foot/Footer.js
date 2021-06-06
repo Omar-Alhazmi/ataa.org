@@ -14,7 +14,7 @@ export default class Footer extends Component {
                         <h3>    <img src={logo} /> </h3>
 
                         <p className="footer-links">
-                            <a href="#">Home</a>
+                            {/* <a href="#">Home</a>
                             ·
                             <a href="#">Blog</a>
                             ·
@@ -24,7 +24,7 @@ export default class Footer extends Component {
                             ·
                             <a href="#">Faq</a>
                             ·
-                            <a href="#">Contact</a>
+                            <a href="#">Contact</a> */}
                         </p>
                     
                         <p className="footer-company-name"> &copy; 2019</p>
@@ -49,19 +49,19 @@ export default class Footer extends Component {
 
                     </div>
 
-                    <div class="footer-right">
+                    <div className="footer-right">
 
-                        <p class="footer-company-about">
+                        <p className="footer-company-about">
                             <span>About the company</span>
                             Web Dev Trick is a blog for web designers, graphic designers, web developers &amp; SEO Learner.
                         </p>
 
-                        <div class="footer-icons">
+                        <div className="footer-icons">
 
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
+                            <a href="#"><i className="fa fa-facebook"></i></a>
+                            <a href="#"><i className="fa fa-twitter"></i></a>
+                            <a href="#"><i className="fa fa-linkedin"></i></a>
+                            <a href="#"><i className="fa fa-github"></i></a>
 
                         </div>
 

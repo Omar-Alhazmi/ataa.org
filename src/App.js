@@ -4,11 +4,13 @@ import { Route, HashRouter } from "react-router-dom";
 
 function App() {
   return (
-      <HashRouter>
-        <Route path='/'>
+    <>
+       <HashRouter>
+       <Route path='/'> 
        <Heder />
        </Route>
     </HashRouter>
+    </>
 
   );
 }
