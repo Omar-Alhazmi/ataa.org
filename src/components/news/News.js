@@ -1,20 +1,51 @@
 import React, { Component } from 'react'
 import   '../styles/news.css';
+import {getAllNews} from '../api_config/api';
+import apiURL from '../api_config/ApiConfig';
 export default class News extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            News: [],
+        };
+    }
+    componentDidMount() {
+        // Mack API call 
+        getAllNews(this.props.News)
+            .then((response) => {
+                this.setState({ News: response.data });
+                })
+            .catch((error) => {
+            })
+    }
     render() {
-        return (
-            <div>
-                <div className="card">
-                    <div className="thumbnail"><img className="left" src="https://cdn2.hubspot.net/hubfs/322787/Mychefcom/images/BLOG/Header-Blog/photo-culinaire-pexels.jpg" /></div>
-                    <div className="right">
-                        <h1 className="card_title">Why you Need More Magnesium in Your Daily Diet</h1>
-                        <div className="separator"></div>
-                        <p>Magnesium is one of the six essential macro-minerals that is required by the body for energy production and synthesis of protein and enzymes. It contributes to the development of bones and most importantly it is responsible for synthesis of your DNA and RNA. A new report that has appeared in theBritish Journal of Cancer, gives you another reason to add more magnesium to your diet...</p>
+        const dateFormat = require('dateformat');
+
+        let allNews = <h3> قريبا... </h3>
+        // if condtion to check the array is greater than zero return and pass the data to ReceivedService components 
+        if (this.state.News.length > 0) {
+            allNews = this.state.News.map((item, index) => {
+                return (
+                    <div>
+                    <div className="card"  key={index}>
+                        <div className="thumbnail"><img className="left" src={`${apiURL}${item.img}`} /></div>
+                        <div className="right">
+                            <h1 className="card_title">{item.Title}</h1>
+                            <div className="separator"></div>
+                            <p>{item.Content}</p>
+                        </div>
+                        
+                        <h5>  {dateFormat(item.PostAt, "m")}</h5>
+                        <h6>{dateFormat(item.PostAt, "yy")}</h6>
                     </div>
-                    <h5>12</h5>
-                    <h6>JANUARY</h6>
                 </div>
-            </div>
+                );
+            })
+        }
+        return (
+<>
+{allNews}
+</>
         )
     }
 }
