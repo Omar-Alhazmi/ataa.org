@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Footer from '../hed_foot/Footer'
+import Footer from '../footer/Footer'
 import News from './News';
 export default class NewsContainer extends Component {
     render() {

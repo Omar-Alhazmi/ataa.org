@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import Slider from 'react-animated-slider';
-import '../styles/slide_animation.css';
-import '../styles/home.css'
-import '../styles/footer.css'
-import 'react-animated-slider/build/horizontal.css';
-import Footer from '../hed_foot/Footer'
+import Footer from '../footer/Footer'
 import { getAllNews } from '../api_config/api'
 import apiURL from '../api_config/ApiConfig';
-
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import  '../styles/footer.css';
+import Slider from "react-slick";
 export default class Home extends Component {
     constructor(props) {
         super(props)
@@ -31,6 +29,35 @@ export default class Home extends Component {
 
 
     render() {
+        const settings = {
+            className: "sliderContainer",
+            dots: true,
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            adaptiveHeight: true,
+            autoplay: true,
+            speed: 3000,
+            // autoplaySpeed: 3000,
+            // responsive: [
+            //     {
+            //       breakpoint: 600,
+            //       settings: {
+            //         slidesToShow: 2,
+            //         slidesToScroll: 2,
+            //         initialSlide: 2
+            //       }
+            //     },
+            //     {
+            //       breakpoint: 480,
+            //       settings: {
+            //         slidesToShow: 1,
+            //         slidesToScroll: 1
+            //       }
+            //     }
+            //   ]
+        };
+
         const news = this.state.News
         const content =
         {
@@ -44,57 +71,63 @@ export default class Home extends Component {
         }
 
         let allNews = (
-            <Slider className="slider-wrapper">
-                <div
-                    className="slider-content"
-                    style={{ background: `url('${content.image}') no-repeat center center` }}
-                >
-                    <div className="inner">
-                        <h1>{content.Title}</h1>
-                        <p>{content.Content}</p>
-                        <button className="readMore">إقرأ المزيد</button>
-                    </div>
-                    <section>
-                        <img src={content.userProfile} alt={content.user} />
-                        <span>
-                            Posted by <strong>{content.user}</strong>
-                        </span>
-                    </section>
-                </div>
+            <div className="sliderMainContainer">
+                <hr />
+            <Slider {...settings}>
+              <div>
+                <h3>1
+                </h3>
+                <h2> Single Item</h2>
+            <h2> Single Item</h2>     <h2> Single Item</h2>
+              </div>
+              <div>
+                <h3>2</h3>
+                <h2> Single Item</h2>
+            <h2> Single Item</h2>     <h2> Single Item</h2>
+              </div>
+              <div>
+                <h3>3</h3>
+              </div>
+              <div>
+                <h3>4</h3>
+              </div>
+              <div>
+                <h3>5</h3>
+                <h2> Single Item</h2>
+            <h2> Single Item</h2>     <h2> Single Item</h2>
+              </div>
+              <div>
+                <h3>6</h3>
+              </div>
             </Slider>
+          </div>
+
         )
         if (news.length > 0) {
             allNews = (
-                <Slider className="slider-wrapper">
-                {news.map((item, index) => (
-                    <div
-                        key={index}
-                        className="slider-content"
-                        style={{ background: `url('${apiURL}${item.Banner}') no-repeat center center` }}
-                    >
-                        <div className="inner">
-                            <h1>{item.Title}</h1>
-                            <p>{item.Content}</p>
-                            <button className="readMore">إقرأ المزيد</button>
-                        </div>
-                        <section>
-                            <img src={item.userProfile} alt={item.user} />
-                            <span>
-                                Posted by <strong>{item.user}</strong>
-                            </span>
-                        </section>
-                    </div>
-                ))}
-            </Slider>
+            <div className="sliderMainContainer">
+                <hr />
+                  <Slider {...settings}>
+                  {news.map((item, index) => (
+                            <div key={index}>
+                                <h3>{item.Title}</h3>
+                                    <p>{item.Content}</p>
+                            </div>
+                         
+                         ))}
+           </Slider>
+        </div>
             )
-        }
+                    }
 
 
-        return (
-       <>
-    {allNews}
-         <Footer />
-         </>    
-        )
+                    return (
+                    <div className="lol">
+                        
+                        {allNews}
+
+                        <Footer />
+                    </div>
+                    )
     }
 }

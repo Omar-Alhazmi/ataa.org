@@ -124,16 +124,16 @@ h6 {
 }
 
 /* Those futur buttons */
-ul {
+/* ul {
   margin-left: 250px;
-}
+} */
 
-li {
+/* li {
   display: inline;
   list-style: none;
   padding-right: 40px;
   color: #7B7B7B;
-}
+} */
 
 /* Floating action button */
 .fab {
@@ -151,4 +151,31 @@ li {
   -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+}
+@media screen and (max-width: 768px) {
+  .card{
+    width: 95%;
+    margin: 70px auto; 
+    min-height: 350px;
+    height: auto;
+  }
+  
+  .blur_back{
+    width: 100%;
+    background-position: 50% 50% !important;  
+  }
+  
+  .team_header{
+    width: 100%;
+    margin-top: 85px;
+  }
+  
+  .team_desc{
+    width: 100%;
+  }
+  
+  .info_section{
+    background: linear-gradient(to top, #e5e6e6 50%, transparent 100%);
+    display: inline-grid;
+  }
 }
