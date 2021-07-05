@@ -2,28 +2,99 @@ import React, { Component } from 'react'
 import '../styles/footer.css';
 import Footer from '../footer/Footer';
 import '../styles/login.css';
+import Swal from "sweetalert2";
+import { getInfo } from "../helperMethods";
+import axios from 'axios';
+import { createBrowserHistory } from "history";
+
+import  apiURL  from '../api_config/ApiConfig';
 export default class LoginContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      Email:"",
+      password:""
+    }
+    this.change = this.handelChange.bind(this);
+    this.submit = this.handelSubmit.bind(this);
+  }
+  handelChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+  handelSubmit(e) {
+        e.preventDefault();
+        const history = createBrowserHistory();
+        axios
+      .post(`${apiURL}api/User/login`, {
+        Email: this.state.Email,
+        password: this.state.password
+      })
+      .then(res => {
+        localStorage.setItem("currentUser", res.data.token);
+        let jwt = getInfo().data.Role;
+        console.log(jwt);
+        if (jwt === undefined) {
+          history.push("/");
+          Swal.fire(` ${jwt}`, "", 'error');
+        }
+        else if (jwt === "TeamLeader") {
+          console.log(jwt);
+          history.push("/");
+          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+        } else if (jwt === "TeamCoLeader") {
+          console.log(jwt);
+          history.push("/");
+          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+        } else if (jwt === "TeamMember") {
+          history.push("/");
+          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+        } else if (jwt === "GeneralMember") {
+          history.push("/");
+          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+        }else{
+          Swal.fire(` اسم المستخدم او الرقم السري غير صحيح`, "", 'error');
+        }
+        window.location.reload(false);
+        return res; 
+  })
+}
+
+
   render() {
     return (
       <>
         <div className="LoginContainer">
-          <form class='login-form'>
-            <div class="flex-row">
-              <label class="lf--label" for="username">
+          <form className='login-form' onSubmit={e => this.submit(e)}>
+            <div className="flex-row">
+              <label className="lf--label" for="username">
                 <svg x="0px" y="0px" width="12px" height="13px">
                 </svg>
               </label>
-              <input id="username" className='lf--input' placeholder='البريد الالكتروني' type='text' />
+              <input id="username" 
+              className='lf--input' 
+              placeholder='البريد الالكتروني' 
+              name="Email"
+              type="text"
+              onChange={e => this.change(e)}
+              value={this.state.Email} />
             </div>
             <div className="flex-row">
               <label className="lf--label" for="password">
                 <svg x="0px" y="0px" width="15px" height="5px">
                 </svg>
               </label>
-              <input id="password" className='lf--input' placeholder='كلمة المرور' type='password' />
+              <input id="password" 
+              className='lf--input' 
+              placeholder='كلمة المرور'
+              name="password"
+               type='password'
+               onChange={e => this.change(e)}
+               value={this.state.password} />
             </div>
-            <input className='lf--submit' type='submit' value='تسجيل الدخول' />
-            <input className='lf--submit' type='submit' value='تسجيل جديد ' />
+            <input className='lf--submit' type='submit' value='تسجيل الدخول' onClick={e => this.submit(e)}/>
+            <input className='lf--submit' type='submit' value='تسجيل جديد ' onClick={() => this.props.history.push("/register")}/>
           </form>
         </div>
         <Footer />
