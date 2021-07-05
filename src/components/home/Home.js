@@ -31,14 +31,14 @@ export default class Home extends Component {
     render() {
         const settings = {
             className: "sliderContainer",
-            dots: true,
             infinite: true,
             slidesToShow: 1,
             slidesToScroll: 1,
             adaptiveHeight: true,
             autoplay: true,
             speed: 3000,
-            // autoplaySpeed: 3000,
+           
+                        // autoplaySpeed: 3000,
             // responsive: [
             //     {
             //       breakpoint: 600,
@@ -106,6 +106,7 @@ export default class Home extends Component {
         if (news.length > 0) {
             allNews = (
             <div className="sliderMainContainer">
+                <h3> اخر الاخبار </h3>
                 <hr />
                   <Slider {...settings}>
                   {news.map((item, index) => (

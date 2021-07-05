@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap');
 *{
     box-sizing:border-box;
     margin:0;
-    padding: 0;
-    font-family:'Encode Sans Expanded',
-    sans-serif;
-  
+    padding: 0; 
+    font-family:' Amiri Encode Sans Expanded Roboto', sans-serif;
+    font-family: 'Amiri', serif;
+
   }

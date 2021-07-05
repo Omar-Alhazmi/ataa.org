@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import   '../styles/news.css';
-import {getAllNews} from '../api_config/api';
+ import styled from 'styled-components'
+import Card from './NewsStyled'
+import { getAllNews } from '../api_config/api'
 import apiURL from '../api_config/ApiConfig';
+import Footer from '../footer/Footer';
 export default class News extends Component {
     constructor(props) {
         super(props)
@@ -13,39 +15,84 @@ export default class News extends Component {
         // Mack API call 
         getAllNews(this.props.News)
             .then((response) => {
-                this.setState({ News: response.data });
+                const News = response.data.filter((News) => {
+                    return News.InHomePage === true
                 })
+                this.setState({ News });
+            })
             .catch((error) => {
             })
     }
-    render() {
-        const dateFormat = require('dateformat');
 
-        let allNews = <h3> قريبا... </h3>
-        // if condtion to check the array is greater than zero return and pass the data to ReceivedService components 
-        if (this.state.News.length > 0) {
-            allNews = this.state.News.map((item, index) => {
-                return (
-                    <div>
-                    <div className="card"  key={index}>
-                        <div className="thumbnail"><img className="left" src={`${apiURL}${item.img}`} /></div>
-                        <div className="right">
-                            <h1 className="card_title">{item.Title}</h1>
-                            <div className="separator"></div>
-                            <p>{item.Content}</p>
-                        </div>
-                        
-                        <h5>  {dateFormat(item.PostAt, "m")}</h5>
-                        <h6>{dateFormat(item.PostAt, "yy")}</h6>
-                    </div>
-                </div>
-                );
-            })
-        }
+    render() {
+          const StyledRoot = styled.div`
+  padding: 50px 12px;
+`
+
+  const StyledContainer = styled.div`
+  max-width: 550px;
+  width: 100%;
+  margin: auto;
+ 
+`
+
+  const Action = styled.button`
+  margin: 0 5px;
+  padding: 8px 14px;
+  background: rgba(155, 155, 155, 0.2);
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #fff;
+  outline: 0;
+  font-weight: 300;
+  :hover {
+    opacity: 0.8;
+  }
+  :active {
+    background: ${(props) => props.theme.primary};
+  }
+`
+
+        const date = new Date().toLocaleDateString()
+        const news = this.state.News
+        let allNews=(
+            <StyledRoot>
+            <StyledContainer>
+
+              <Card
+                title={'soon...'}
+                date={date}
+                description={'soon...'}
+              />
+            </StyledContainer>
+          </StyledRoot>
+        )
+        if (news.length > 0) {
+            allNews = (
+                <StyledRoot>
+                <StyledContainer >
+                {news.map((item, index) => (
+                  <Card
+                    key={index}
+                    styledPhoto={`${apiURL}${item.img[0]}`}
+                    title={item.Title}
+                    date={item.PostAt}
+                    description={item.Content}
+                  />              
+
+                ))}
+                </StyledContainer>
+              </StyledRoot>
+            )}
         return (
-<>
-{allNews}
-</>
+            <div>
+                {allNews}
+                <Footer />
+            </div>
         )
     }
 }
+
+
+
+

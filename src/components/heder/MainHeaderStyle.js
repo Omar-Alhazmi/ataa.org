@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 export const Nav = styled.nav`
-background: ${({scrollNav}) => (scrollNav ? '#112d4e' : 'transparent')};
+background: ${({scrollNav}) => (scrollNav ? '#c6e4d1' : 'transparent')};
 height: 80px;
 /* margin-top: -80px; */
 display: flex;
@@ -63,6 +63,7 @@ export const Image = styled.img`
 export const ResponsiveIcon = styled.div`
 display:none;
 @media screen and (max-width: 768px){
+  background-color: #c99f34;
     display: block;
     position: absolute;
     top: 0;
@@ -95,7 +96,7 @@ text-decoration: none;
 padding: 0 1rem;
 height: 100%;
 cursor: pointer;
-color: #3EC1B9;
+color: #2b0061;
 &:hover{
   color: #B38533;
 }

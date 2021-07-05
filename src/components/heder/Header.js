@@ -12,9 +12,9 @@ import {
   } from "react-router-dom";
   import Home from "../home/Home";
 import About from "../abuot/About";
-import News from "../news/NewsContainer";
+import News from "../news/News";
 import Polices from "../polices/Polices";
-import Teams from "../teams/TeamsContainer";
+import Teams from "../teams/Teams";
 import Login from "../login_reg/LoginContainer";
 const Navbar = ({ toggle }) => {
     const [scrollNav, setScroll] = useState(false);
@@ -36,7 +36,12 @@ const Navbar = ({ toggle }) => {
         <>
           <Router>
             <IconContext.Provider value={{ color: '#fff' }}>
-              <MainHeader.NavLogReg> <MainHeader.NavLogRegLink to="/signin">تسجيل الدخول</MainHeader.NavLogRegLink>|
+              <MainHeader.NavLogReg> 
+                <MainHeader.NavLogRegLink      
+                                    duration={500}
+                                    spy={true}
+                                    exact={true.toString()}
+                                    to={'/Login'}>تسجيل الدخول</MainHeader.NavLogRegLink>|
               <MainHeader.NavLogRegLink to="/signin">تسجيل جديد</MainHeader.NavLogRegLink>
               </MainHeader.NavLogReg>  
      
@@ -76,7 +81,7 @@ const Navbar = ({ toggle }) => {
                                 >الفرق التطوعية</MainHeader.NavLinks>
                             </MainHeader.NavItem>|
                             <MainHeader.NavItem>
-                                <MainHeader.NavLinks to="PrivacyPolicy" smooth={true}
+                                <MainHeader.NavLinks to="/PrivacyPolicy" smooth={true}
                                     duration={500}
                                     spy={true}
                                     exact={true.toString()}
@@ -85,7 +90,7 @@ const Navbar = ({ toggle }) => {
                             </MainHeader.NavItem>|
                         </MainHeader.NavMenu>
                         {/* <MainHeader.NavButton>
-                            <MainHeader.NavButtonLink to="/signin">تسجيل الدخول</MainHeader.NavButtonLink>
+                            <MainHeader.NavButtonLink to="/Login">تسجيل الدخول</MainHeader.NavButtonLink>
                         </MainHeader.NavButton> */}
                     </MainHeader.NavContainer>
                 </MainHeader.Nav>
