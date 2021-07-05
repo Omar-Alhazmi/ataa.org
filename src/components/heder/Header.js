@@ -16,6 +16,8 @@ import News from "../news/News";
 import Polices from "../polices/Polices";
 import Teams from "../teams/Teams";
 import Login from "../login_reg/LoginContainer";
+import Register from "../login_reg/Register";
+
 const Navbar = ({ toggle }) => {
     const [scrollNav, setScroll] = useState(false);
     const navOnChange = () => {
@@ -42,7 +44,7 @@ const Navbar = ({ toggle }) => {
                                     spy={true}
                                     exact={true.toString()}
                                     to={'/Login'}>تسجيل الدخول</MainHeader.NavLogRegLink>|
-              <MainHeader.NavLogRegLink to="/signin">تسجيل جديد</MainHeader.NavLogRegLink>
+              <MainHeader.NavLogRegLink to="/Register">تسجيل جديد</MainHeader.NavLogRegLink>
               </MainHeader.NavLogReg>  
      
                 <MainHeader.Nav scrollNav={scrollNav}>
@@ -113,6 +115,9 @@ const Navbar = ({ toggle }) => {
           </Route>
           <Route exact path='/Login'>
             <Login />
+          </Route>
+          <Route exact path='/Register'>
+            <Register />
           </Route>
         </Switch>
         </Router>

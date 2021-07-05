@@ -72,10 +72,12 @@ cursor: pointer;
 font-size: 0.75em;
 font-weight: 600;
 text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+text-decoration: none;
+text-align: center;
 }
 .lf--submit:hover{
     color: #B38533;
-    background: linear-gradient(135deg, rgba(36, 46, 77, 0.9), rgba(137, 126, 121, 0.9));
+    background: #ffff;
 
   }
 .lf--submit:focus {

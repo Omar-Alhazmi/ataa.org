@@ -5,9 +5,11 @@ import '../styles/login.css';
 import Swal from "sweetalert2";
 import { getInfo } from "../helperMethods";
 import axios from 'axios';
-import { createBrowserHistory } from "history";
-
+import { Link } from 'react-router-dom'
+import { createBrowserHistory } from 'history';
 import  apiURL  from '../api_config/ApiConfig';
+
+const history = createBrowserHistory();
 export default class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -15,8 +17,8 @@ export default class LoginContainer extends Component {
       Email:"",
       password:""
     }
-    this.change = this.handelChange.bind(this);
-    this.submit = this.handelSubmit.bind(this);
+    this.handelChange = this.handelChange.bind(this);
+    this.handelSubmit = this.handelSubmit.bind(this);
   }
   handelChange(e) {
     this.setState({
@@ -25,7 +27,6 @@ export default class LoginContainer extends Component {
   }
   handelSubmit(e) {
         e.preventDefault();
-        const history = createBrowserHistory();
         axios
       .post(`${apiURL}api/User/login`, {
         Email: this.state.Email,
@@ -66,7 +67,7 @@ export default class LoginContainer extends Component {
     return (
       <>
         <div className="LoginContainer">
-          <form className='login-form' onSubmit={e => this.submit(e)}>
+          <form className='login-form' onSubmit={e => this.handelSubmit(e)}>
             <div className="flex-row">
               <label className="lf--label" for="username">
                 <svg x="0px" y="0px" width="12px" height="13px">
@@ -77,7 +78,7 @@ export default class LoginContainer extends Component {
               placeholder='البريد الالكتروني' 
               name="Email"
               type="text"
-              onChange={e => this.change(e)}
+              onChange={e => this.handelChange(e)}
               value={this.state.Email} />
             </div>
             <div className="flex-row">
@@ -90,11 +91,13 @@ export default class LoginContainer extends Component {
               placeholder='كلمة المرور'
               name="password"
                type='password'
-               onChange={e => this.change(e)}
+               onChange={e => this.handelChange(e)}
                value={this.state.password} />
             </div>
-            <input className='lf--submit' type='submit' value='تسجيل الدخول' onClick={e => this.submit(e)}/>
-            <input className='lf--submit' type='submit' value='تسجيل جديد ' onClick={() => this.props.history.push("/register")}/>
+            <input className='lf--submit' type='submit' value='تسجيل الدخول' onClick={e => this.handelSubmit(e)}/>
+            <Link to={'Register'} className='lf--submit' type='submit'>
+            تسجيل جديد
+            </Link>
           </form>
         </div>
         <Footer />
