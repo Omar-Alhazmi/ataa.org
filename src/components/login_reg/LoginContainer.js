@@ -17,10 +17,10 @@ export default class LoginContainer extends Component {
       Email:"",
       password:""
     }
-    this.handelChange = this.handelChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handelSubmit = this.handelSubmit.bind(this);
   }
-  handelChange(e) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -78,7 +78,7 @@ export default class LoginContainer extends Component {
               placeholder='البريد الالكتروني' 
               name="Email"
               type="text"
-              onChange={e => this.handelChange(e)}
+              onChange={e => this.handleChange(e)}
               value={this.state.Email} />
             </div>
             <div className="flex-row">
@@ -91,7 +91,7 @@ export default class LoginContainer extends Component {
               placeholder='كلمة المرور'
               name="password"
                type='password'
-               onChange={e => this.handelChange(e)}
+               onChange={e => this.handleChange(e)}
                value={this.state.password} />
             </div>
             <input className='lf--submit' type='submit' value='تسجيل الدخول' onClick={e => this.handelSubmit(e)}/>

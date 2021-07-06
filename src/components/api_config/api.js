@@ -4,7 +4,24 @@ import axios from 'axios';
 
 //---------------All POST Request-------------------//
 
-
+export const UserRegistration = req => {
+  return axios({
+    method: 'POST',
+    url: apiURL + 'api/User/register',
+    data:{
+      FullName: req.FullName,
+      UserName: req.UserName,
+      password: req.password,
+      Email:req.Email,
+      Phone: req.Phone,
+      Role: req.Role,
+      NationalId: req.NationalId,
+      Job:req.Job,
+      Education:req.Education,
+      Gender:req.Gender
+   }
+  })
+}
 
 //---------------All GET Request-------------------//
 export const getAllNews = () =>{
