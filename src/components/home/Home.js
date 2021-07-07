@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Footer from '../footer/Footer'
 import { getAllNews } from '../api_config/api'
-import apiURL from '../api_config/ApiConfig';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import  '../styles/footer.css';
@@ -59,17 +58,6 @@ export default class Home extends Component {
         };
 
         const news = this.state.News
-        const content =
-        {
-            title: 'Vulputate Mollis Ultricies Fermentum Parturient',
-            description:
-                'Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis.',
-            button: 'Read More',
-            image: 'https://i.imgur.com/ZXBtVw7.jpg',
-            user: 'Luan Gjokaj',
-            userProfile: 'https://i.imgur.com/JSW6mEk.png'
-        }
-
         let allNews = (
             <div className="sliderMainContainer">
                 <hr />

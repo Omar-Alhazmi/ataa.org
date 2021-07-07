@@ -3,7 +3,7 @@ import {useState} from 'react'
 
 import NavBar from './components/heder/Header';
 import Sidebar from './components/Sidebar';
-import { Route, HashRouter,Switch } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 function App() {
   const [isOpen, setIsOpen] = useState(false)
 

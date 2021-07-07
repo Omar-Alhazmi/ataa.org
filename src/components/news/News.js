@@ -36,23 +36,6 @@ export default class News extends Component {
  
 `
 
-  const Action = styled.button`
-  margin: 0 5px;
-  padding: 8px 14px;
-  background: rgba(155, 155, 155, 0.2);
-  color: #fff;
-  cursor: pointer;
-  border: 1px solid #fff;
-  outline: 0;
-  font-weight: 300;
-  :hover {
-    opacity: 0.8;
-  }
-  :active {
-    background: ${(props) => props.theme.primary};
-  }
-`
-
         const date = new Date().toLocaleDateString()
         const news = this.state.News
         let allNews=(

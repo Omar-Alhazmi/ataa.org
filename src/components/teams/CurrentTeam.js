@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { BsArrowRight } from "react-icons/bs";
-
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import apiURL from '../api_config/ApiConfig';
 import "./table.css"
 
@@ -23,7 +20,7 @@ export default class currentTeam extends Component {
                     <div class="table">
                         <div class="row head first">
                             <div class="cell table_image">
-                                <img src={apiURL + data.Logo} />
+                                <img src={apiURL + data.Logo} alt=""/>
                             </div>
                             <div class="cell teamName">
                                 {data.data.TeamName}

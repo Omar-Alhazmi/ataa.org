@@ -6,12 +6,6 @@ import Footer from '../footer/Footer';
 import CurrentTeam from './CurrentTeam';
 import Pagination from './Pagination';
 import '../styles/footer.css';
-const customLabels = {
-        first: '<<',
-        last: '>>',
-        previous: '<',
-        next: '>'
-};
 export default class Teams extends Component {
     constructor(props) {
         super(props)
@@ -56,11 +50,11 @@ export default class Teams extends Component {
                 return (  
                     
         <div id={item._id}>
-            <Cards.single_card key={index}  onClick={()=>this.teamHandler(index)}>
+            <Cards.SingleCard key={index}  onClick={()=>this.teamHandler(index)}>
                 <Cards.CardsIcon src={apiURL+item.Logo} />
                 <Cards.CardsH2>{item.data.TeamName}</Cards.CardsH2>
                 <Cards.CardsP>{item.Content}</Cards.CardsP>
-            </Cards.single_card>
+            </Cards.SingleCard>
 
         </div>
     )

@@ -39,12 +39,8 @@ const StyledPhoto = styled.img`
   object-fit: cover;
   border: ${(props) => `1px solid ${props.theme.border}`};
 `
-const bg = styled.div`
-background-color:#e9e9e9;
-`
 
 const Card = ({
-  bg,
   title,
   date,
   description,

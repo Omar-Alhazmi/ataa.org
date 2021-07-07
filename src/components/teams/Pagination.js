@@ -112,26 +112,29 @@ class Pagination extends React.Component {
             // don't display pager if there is only 1 page
             return null;
         }
-
+        const d_left = '<<'
+        const d_right = '>>'
+        const left = '<'
+        const right = '>'
         return (
             <ul className="pagination">
-                <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(1)}>{'<<'}</a>
-                </li>
-                <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage - 1)}> {'<'} </a>
-                </li>
+                <button onClick={() => this.setPage(1)}> <li className={pager.currentPage === 1 ? 'disabled' : ''}>
+                    {d_left}
+                </li></button>
+                <button  onClick={() => this.setPage(pager.currentPage - 1)}> <li className={pager.currentPage === 1 ? 'disabled' : ''}>
+                    {left}
+                </li></button>
                 {pager.pages.map((page, index) =>
-                    <li key={index} className={pager.currentPage === page ? 'is-active' : ''}>
-                        <a onClick={() => this.setPage(page)}>{page}</a>
-                    </li>
+                    <button  onClick={() => this.setPage(page)}> <li key={index} className={pager.currentPage === page ? 'is-active' : ''}>
+                        {page}
+                    </li></button>
                 )}
-                <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.currentPage + 1)}>{'>'}</a>
-                </li>
-                <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                    <a onClick={() => this.setPage(pager.totalPages)}>{'>>'}</a>
-                </li>
+                <button  onClick={() => this.setPage(pager.currentPage + 1)}> <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
+                    {right}
+                </li></button>
+                <button  onClick={() => this.setPage(pager.totalPages)}> <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
+                    {d_right}
+                </li></button>
             </ul>
         );
     }

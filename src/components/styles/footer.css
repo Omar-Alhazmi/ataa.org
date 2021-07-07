@@ -1,27 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap');
 
-hr{
+hr {
 	width: 110%;
 	margin-right: -4%;
 }
-.form-elegant .font-small {
-	font-size: 0.8rem; }
-  
-  .form-elegant .z-depth-1a {
-	-webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
-	box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }
-  
-  .form-elegant .z-depth-1-half,
-  .form-elegant .btn:hover {
-	-webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
-	box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }
 
-  .PaginationContainer{
+.form-elegant .font-small {
+	font-size: 0.8rem;
+}
+
+.form-elegant .z-depth-1a {
+	-webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+	box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+}
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+	-webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+	box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+}
+
+.PaginationContainer {
 	display: flex;
 	justify-content: center;
 	margin: 15px 0 10px 0;
-  }
-  .Pagination ul{
+}
+
+.Pagination ul {
 	list-style: none;
 	padding: 0 0 0 0;
 	margin: 0 0 0 0;
@@ -31,14 +36,16 @@ hr{
 	line-height: 1.5em;
 	display: flex;
 	justify-content: center;
-    align-items: center;
-  }
-  .Pagination a:hover{
+	align-items: center;
+}
+
+.Pagination button:hover {
 	font-weight: bold;
 	color: #0088cc;
 	border: 3px solid #0088cc;
-  }
-  .Pagination a{
+}
+
+.Pagination button {
 	display: inline-block;
 	/* padding: 0px 1px; */
 	margin: 0 9px;
@@ -50,59 +57,53 @@ hr{
 	position: relative;
 	background-color: #ffffff;
 	border-radius: 100%;
-	padding: 15px; 
+	padding: 15px;
 	margin-top: 10px;
-  }
+}
 
 
 
-  .Pagination .is-active a{
+.Pagination .is-active button {
 	color: #2b0061;
 	border: 3px solid #2b0061;
-	background-color: #eeeeee
+	background-color: #eeeeee;
+}
 
-	;
-  }
-  
 .lol {
 	height: fit-content;
-    display: grid;
+	display: grid;
 	margin-top: 30%;
 	background-color: #e0e0e0;
 	font-size: 20px;
 	font-family: 'Amiri', serif;
 
-  }
-  
-  .sliderMainContainer{
+}
+
+.sliderMainContainer {
 	justify-self: center;
 	align-self: center;
 	justify-content: center;
-	align-content: center;	
-  }
-.sliderContainer{
+	align-content: center;
+}
+
+.sliderContainer {
 	padding: 10%;
 	text-align: right;
-    width: 538px;
-    height: fit-content;
+	width: 538px;
+	height: fit-content;
 	justify-self: stretch;
 	align-self: center;
-	color: #79ceff
-
-	;
-background-color:#eeeeee
-
-;
-
-
+	color: #79ceff;
+	background-color: #eeeeee;
 }
 
 @media screen and (max-width: 768px) {
-	hr{
+	hr {
 		width: 100%;
 		margin: 0;
 	}
-	.sliderContainer{
+
+	.sliderContainer {
 		width: 307px;
 	}
 }

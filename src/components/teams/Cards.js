@@ -50,7 +50,7 @@ padding:0 50px;
     padding: 0 20px;
 }
 `;
-export const single_card = styled.div`
+export const SingleCard = styled.div`
 background: #ffffff;
 display: flex;
 flex-direction: column;
