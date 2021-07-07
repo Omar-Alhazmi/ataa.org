@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import '../styles/login.css';
 import Footer from '../footer/Footer';
 import { Link } from 'react-router-dom'
-import {UserRegistration} from '../api_config/api';
+import { UserRegistration } from '../api_config/api';
+import { AiOutlineMail, AiFillIdcard, AiOutlineMobile } from 'react-icons/ai';
+import { CgLastpass, CgUserList, CgRename, CgWorkAlt, CgGenderFemale, CgGenderMale } from 'react-icons/cg';
 import Swal from "sweetalert2";
 
 export default class Register extends Component {
@@ -11,47 +13,49 @@ export default class Register extends Component {
     this.state = {
       Email: "",
       password: "",
-      FullName:"",
+      FullName: "",
       Role: "",
       Job: "",
-      Phone:"",
-      NationalId:"",
-      // Education: "",
-      Gender:""
+      Phone: "",
+      NationalId: "",
+      Education: "",
+      Gender: ""
     }
     this.handleChange = this.handleChange.bind(this);
     this.handelSubmit = this.handelSubmit.bind(this);
   }
   handleChange = event => {
     this.setState({
-        [event.target.name]: event.target.value
+      [event.target.name]: event.target.value
     });
-}
-// Function to set data in ServiceDescription state
-addUser = User => {
-
+  }
+  // Function to set data in ServiceDescription state
+  addUser = User => {
     // Make an api call request to add a new user 
     UserRegistration(User)
-        .then(response => {
-                Swal.fire(` تم إضاقة المستخدم  ${User.FullName}  بنجاح `,  'success');
-          
-        })
-        .catch(error => {
-            Swal.fire(`Wrong ${error}`, "", 'error');
+      .then(response => {
+        console.log(response);
+        if (response.data.success === false) {
+          Swal.fire(`Wrong ${response.data.message}`, 'error');
+        }
+        if (response.data.success === true) {
+          Swal.fire(`تم إرسال رسالة التأكيد الى  البريد الالكتروني `, 'success');
+        }
+      })
+      .catch(error => {
+        Swal.fire(`Wrong ${error}`, "", 'error');
+      });
+  };
 
-
-        });
-};
-
-handelSubmit = e => {
+  handelSubmit = e => {
     // set the object of new user data 
     const newUser = this.state;
     e.preventDefault();
     this.addUser(newUser);
-};
+  };
 
   render() {
-    const { FullName, Job, NationalId, Email, Phone, password, Role,Gender,Education} = this.state;
+    const { FullName, Job, NationalId, Email, Phone, password, Role, Gender, Education } = this.state;
 
     return (
       <>
@@ -59,8 +63,7 @@ handelSubmit = e => {
           <form className='login-form' onSubmit={e => this.handelSubmit(e)}>
             <div className="flex-row">
               <label className="lf--label" for="Email">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+                <AiOutlineMail />
               </label>
               <input id="Email"
                 className='lf--input'
@@ -72,8 +75,7 @@ handelSubmit = e => {
             </div>
             <div className="flex-row">
               <label className="lf--label" for="password">
-                <svg x="0px" y="0px" width="15px" height="5px">
-                </svg>
+                <CgLastpass />
               </label>
               <input id="password"
                 className='lf--input'
@@ -85,8 +87,7 @@ handelSubmit = e => {
             </div>
             <div className="flex-row">
               <label className="lf--label" for="Role">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+                <CgUserList />
               </label>
               <select id="Role"
                 className='lf--input'
@@ -100,9 +101,9 @@ handelSubmit = e => {
               </select>
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="FullName">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+              <label className="lf--label" for="NationalId">
+
+                <CgRename />
               </label>
               <input id="FullName"
                 className='lf--input'
@@ -114,8 +115,7 @@ handelSubmit = e => {
             </div>
             <div className="flex-row">
               <label className="lf--label" for="NationalId">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+                <AiFillIdcard />
               </label>
               <input id="NationalId"
                 className='lf--input'
@@ -127,8 +127,7 @@ handelSubmit = e => {
             </div>
             <div className="flex-row">
               <label className="lf--label" for="Phone">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+                <AiOutlineMobile />
               </label>
               <input id="Phone"
                 className='lf--input'
@@ -140,8 +139,7 @@ handelSubmit = e => {
             </div>
             <div className="flex-row">
               <label className="lf--label" for="Job">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+                <CgWorkAlt />
               </label>
               <input id="Job"
                 className='lf--input'
@@ -153,8 +151,9 @@ handelSubmit = e => {
             </div>
             <div className="flex-row">
               <label className="lf--label" for="Gender">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+                <CgGenderMale />
+                <CgGenderFemale />
+
               </label>
               <select id="Gender"
                 className='lf--input'
@@ -167,11 +166,7 @@ handelSubmit = e => {
               </select>
             </div>
             {Role === "GeneralMember" ?
-                
               <div className="flex-row">
-                                {this.setState({
-                                   Education:""
-                      })}
                 <label className="lf--label" for="Education">
                   <svg x="0px" y="0px" width="12px" height="13px">
                   </svg>
