@@ -16,7 +16,8 @@ import Polices from "../polices/Polices";
 import Teams from "../teams/Teams";
 import Login from "../login_reg/LoginContainer";
 import Register from "../login_reg/Register";
-
+import PrivateRoute from './PrivateRoute';
+import TeamLeader from '../teams/teamLeader/TeamLeader';
 const Navbar = ({ toggle }) => {
     const [scrollNav, setScroll] = useState(false);
     const navOnChange = () => {
@@ -90,9 +91,6 @@ const Navbar = ({ toggle }) => {
                                 >السياسات والحوكمة</MainHeader.NavLinks>
                             </MainHeader.NavItem>|
                         </MainHeader.NavMenu>
-                        {/* <MainHeader.NavButton>
-                            <MainHeader.NavButtonLink to="/Login">تسجيل الدخول</MainHeader.NavButtonLink>
-                        </MainHeader.NavButton> */}
                     </MainHeader.NavContainer>
                 </MainHeader.Nav>
             </IconContext.Provider>
@@ -109,15 +107,20 @@ const Navbar = ({ toggle }) => {
           <Route exact path='/Teams'>
             <Teams />
           </Route>
-          <Route exact path='/Polices'>
+          {/* <Route exact path='/Polices'>
             <Polices />
-          </Route>
+          </Route> */}
           <Route exact path='/Login'>
             <Login />
           </Route>
           <Route exact path='/Register'>
             <Register />
           </Route>
+          <PrivateRoute>
+          <Route path={'/TeamLeader'} component={TeamLeader} />
+          <Route path={'/Polices'} component={Polices} />
+
+          </PrivateRoute>
         </Switch>
         </Router>
         </>

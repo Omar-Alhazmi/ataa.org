@@ -28,8 +28,8 @@ background: linear-gradient(to right, #35c3c1, #00d6b7);
 }
 @media screen and (min-width: 600px) {
 .login-form {
-  width: 50vw;
-  max-width: 15em;
+  width: 76vw;
+  max-width: 32em;
 }
 }
 

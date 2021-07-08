@@ -42,8 +42,8 @@ export default class LoginContainer extends Component {
         }
         else if (jwt === "TeamLeader") {
           console.log(jwt);
-          history.push("/");
           Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+          history.push('/#/TeamLeader')
         } else if (jwt === "TeamCoLeader") {
           console.log(jwt);
           history.push("/");
@@ -57,7 +57,7 @@ export default class LoginContainer extends Component {
         }else{
           Swal.fire(` اسم المستخدم او الرقم السري غير صحيح`, "", 'error');
         }
-        window.location.reload(false);
+      window.location.reload(false);
         return res; 
   })
 }
