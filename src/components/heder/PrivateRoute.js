@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getInfo } from '../helperMethods';
+import { getInfo,checkStorage } from '../helperMethods';
 import { Redirect, withRouter } from "react-router-dom";
 class PrivateRoute extends Component {
     constructor(props) {
@@ -9,8 +9,8 @@ class PrivateRoute extends Component {
         };
     }
     componentWillMount() {
+        if(checkStorage() !== null){
         let jwt = getInfo().data.Role
-        console.log(jwt);
         switch (jwt) {
             case 'TeamLeader':
                 this.setState({
@@ -37,8 +37,10 @@ class PrivateRoute extends Component {
                 break;
         }
     }
+    }
     render() {
         const { currentUser } = this.state
+        if(checkStorage() !== null){
         switch (currentUser) {
             case 'TeamLeader':
                 return <>{this.props.children[0]}</>
@@ -51,6 +53,9 @@ class PrivateRoute extends Component {
             default:
                 return <Redirect to={"/login"} />
         }
+    } 
+       return<Redirect to={"/login"} />
     }
+   
 }
 export default withRouter(PrivateRoute);

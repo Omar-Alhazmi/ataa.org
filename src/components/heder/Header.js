@@ -5,11 +5,11 @@ import * as MainHeader from './MainHeaderStyle'
 import { animateScroll as scroll } from 'react-scroll';
 import logo from '../../image/logo.ico'
 import {
-    HashRouter as Router,
-    Switch,
-    Route,
-  } from "react-router-dom";
-  import Home from "../home/Home";
+  HashRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Home from "../home/Home";
 import About from "../abuot/About";
 import News from "../news/News";
 import Polices from "../polices/Polices";
@@ -18,83 +18,95 @@ import Login from "../login_reg/LoginContainer";
 import Register from "../login_reg/Register";
 import PrivateRoute from './PrivateRoute';
 import TeamLeader from '../teams/teamLeader/TeamLeader';
-const Navbar = ({ toggle }) => {
-    const [scrollNav, setScroll] = useState(false);
-    const navOnChange = () => {
-        if (window.scrollY >= 30) {
-            setScroll(true);
-        } else {
-            setScroll(false);
-        }
-    };
-    useEffect(() => {
-        window.addEventListener('scroll', navOnChange);
-    }, []);
+import { getInfo, checkStorage } from '../helperMethods';
 
-    const toggleHandler = () => {
-        scroll.scrollToTop();
-    };
-    return (
-        <>
-          <Router>
-            <IconContext.Provider value={{ color: '#fff' }}>
-              <MainHeader.NavLogReg> 
-                <MainHeader.NavLogRegLink      
-                                    duration={500}
-                                    spy={true}
-                                    exact={true.toString()}
-                                    to={'/Login'}>تسجيل الدخول</MainHeader.NavLogRegLink>|
-              <MainHeader.NavLogRegLink to="/Register">تسجيل جديد</MainHeader.NavLogRegLink>
-              </MainHeader.NavLogReg>  
-     
-                <MainHeader.Nav scrollNav={scrollNav}>
-                   
-                    <MainHeader.NavContainer >
-                        <MainHeader.NavLogo  to='/' onClick={toggleHandler}><MainHeader.Image scrollNav={scrollNav}  duration={500} src={logo} alt="" /> </MainHeader.NavLogo>
-                        <MainHeader.ResponsiveIcon onClick={toggle}>
-                            <FaBars />
-                        </MainHeader.ResponsiveIcon>
-                        <MainHeader.NavMenu>
-                            <MainHeader.NavItem>
-                                <MainHeader.NavLinks
-                                   to={'/About'}
-                                    duration={500}
-                                    offset={13}
-                                >عن الجمعية</MainHeader.NavLinks>
-                            </MainHeader.NavItem>|
-                            <MainHeader.NavItem>
-                                <MainHeader.NavLinks
-                                    to={'/News'}
-                                    smooth={true}
-                                    duration={500}
-                                    spy={true}
-                                    exact={true.toString()}
-                                    offset={13}
-                                >الاخبار</MainHeader.NavLinks>
-                            </MainHeader.NavItem>|
-                            <MainHeader.NavItem>
-                                <MainHeader.NavLinks
-                                    to="/Teams"
-                                    smooth={true}
-                                    duration={500}
-                                    spy={true}
-                                    exact={true.toString()}
-                                    offset={13}
-                                >الفرق التطوعية</MainHeader.NavLinks>
-                            </MainHeader.NavItem>|
-                            <MainHeader.NavItem>
-                                <MainHeader.NavLinks to="/PrivacyPolicy" smooth={true}
-                                    duration={500}
-                                    spy={true}
-                                    exact={true.toString()}
-                                    offset={13}
-                                >السياسات والحوكمة</MainHeader.NavLinks>
-                            </MainHeader.NavItem>|
-                        </MainHeader.NavMenu>
-                    </MainHeader.NavContainer>
-                </MainHeader.Nav>
-            </IconContext.Provider>
-            <Switch>
+const Navbar = ({ toggle }) => {
+  const [scrollNav, setScroll] = useState(false);
+  const navOnChange = () => {
+    if (window.scrollY >= 30) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('scroll', navOnChange);
+  }, []);
+  const toggleHandler = () => {
+    scroll.scrollToTop();
+  };
+  return (
+    <>
+      <Router>
+        <IconContext.Provider value={{ color: '#fff' }}>
+          <MainHeader.NavLogReg>
+            <MainHeader.NavLogRegLink
+              duration={500}
+              spy={true.toString()}
+              exact={true.toString()}
+              to={'/Login'}>تسجيل الدخول</MainHeader.NavLogRegLink>|
+            <MainHeader.NavLogRegLink to="/Register">تسجيل جديد</MainHeader.NavLogRegLink>
+          </MainHeader.NavLogReg>
+          <MainHeader.Nav scrollNav={scrollNav}>
+            <MainHeader.NavContainer >
+              <MainHeader.NavLogo to='/' onClick={toggleHandler}><MainHeader.Image scrollNav={scrollNav} duration={500} src={logo} alt="" /> </MainHeader.NavLogo>
+              <MainHeader.ResponsiveIcon onClick={toggle}>
+                <FaBars />
+              </MainHeader.ResponsiveIcon>
+              <MainHeader.NavMenu>
+                <MainHeader.NavItem>
+                  <MainHeader.NavLinks
+                    to={'/About'}
+                    duration={500}
+                    offset={13}
+                  >عن الجمعية</MainHeader.NavLinks>
+                </MainHeader.NavItem>|
+                <MainHeader.NavItem>
+                  <MainHeader.NavLinks
+                    to={'/News'}
+                    smooth={true.toString()}
+                    duration={500}
+                    spy={true.toString()}
+                    exact={true.toString()}
+                    offset={13}
+                  >الاخبار</MainHeader.NavLinks>
+                </MainHeader.NavItem>|
+                <MainHeader.NavItem>
+                  <MainHeader.NavLinks
+                    to="/Teams"
+                    smooth={true.toString()}
+                    duration={500}
+                    spy={true.toString()}
+                    exact={true.toString()}
+                    offset={13}
+                  >الفرق التطوعية</MainHeader.NavLinks>
+                </MainHeader.NavItem>|
+                {checkStorage() !== null ? getInfo().data.Role === 'TeamLeader' ?
+                  <MainHeader.NavItem>
+                    <MainHeader.NavLinks
+                      to="/TeamLeader"
+                      smooth={true.toString()}
+                      duration={500}
+                      spy={true.toString()}
+                      exact={true.toString()}
+                      offset={13}
+                    >اعدادات الفريق |
+                    </MainHeader.NavLinks>
+                  </MainHeader.NavItem>
+                  : "" : ""}
+                <MainHeader.NavItem>
+                  <MainHeader.NavLinks to="/PrivacyPolicy" smooth={true.toString()}
+                    duration={500}
+                    spy={true.toString()}
+                    exact={true.toString()}
+                    offset={13}
+                  >السياسات والحوكمة</MainHeader.NavLinks>
+                </MainHeader.NavItem>|
+              </MainHeader.NavMenu>
+            </MainHeader.NavContainer>
+          </MainHeader.Nav>
+        </IconContext.Provider>
+        <Switch>
           <Route exact path="/">
             <Home />
           </Route>
@@ -117,16 +129,13 @@ const Navbar = ({ toggle }) => {
             <Register />
           </Route>
           <PrivateRoute>
-          <Route path={'/TeamLeader'} component={TeamLeader} />
-          <Route path={'/Polices'} component={Polices} />
+            <Route path={'/TeamLeader'} component={TeamLeader} />
+            <Route path={'/Polices'} component={Polices} />
 
           </PrivateRoute>
         </Switch>
-        </Router>
-        </>
-    )
+      </Router>
+    </>
+  )
 }
 export default Navbar
-
-
-

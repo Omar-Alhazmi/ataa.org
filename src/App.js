@@ -10,7 +10,7 @@ function App() {
   const toggle = () => {
       setIsOpen(!isOpen)
   }
-  return (
+return (
     <>
        <HashRouter>
        {/* <Switch> */}
