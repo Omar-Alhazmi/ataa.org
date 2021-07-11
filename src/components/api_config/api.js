@@ -1,6 +1,16 @@
 import apiURL from'./ApiConfig';
 import axios from 'axios';
-
+import {checkStorage} from '../helperMethods';
+//================== Helper Method ============================||
+const config ={
+    headers:{
+        "Content-type": "application/json"
+    }
+  }
+  if(checkStorage()){
+    config.headers['Authorization'] = `Bearer ${checkStorage()}`
+  }
+//================== Helper Method ============================||
 
 //---------------All POST Request-------------------//
 
@@ -22,6 +32,21 @@ export const UserRegistration = req => {
    }
   })
 }
+export const TeamRegistration = (req,id) => {
+  return axios({
+    method: 'POST',
+    url: apiURL + `api/request/register/new/Team/${id}`,
+    data:{
+      TeamName: req.TeamName,
+      NumberOfII: req.NumberOfII,
+      Vision: req.Vision,
+      Message: req.Message,
+      GeneralGoal: req.GeneralGoal,
+      SpecificGoal: req.SpecificGoal,
+     },
+     config
+  })
+}
 
 //---------------All GET Request-------------------//
 export const getAllNews = () =>{
@@ -31,6 +56,6 @@ export const getAllTeams = () =>{
     return axios.get(`${apiURL}api/get/allTeams`);
   }
   export const getTeamLeader = (id) =>{
-    return axios.get(`${apiURL}api/get/all/user/${id}`);
+    return axios.get(`${apiURL}api/get/Team/ByUser/${id}`,config);
   }  
-  
+

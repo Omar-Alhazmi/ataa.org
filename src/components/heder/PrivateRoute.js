@@ -9,7 +9,7 @@ class PrivateRoute extends Component {
         };
     }
     componentWillMount() {
-        if(checkStorage() !== null){
+        if(checkStorage() !== null && checkStorage() !== undefined){
         let jwt = getInfo().data.Role
         switch (jwt) {
             case 'TeamLeader':
@@ -40,8 +40,8 @@ class PrivateRoute extends Component {
     }
     render() {
         const { currentUser } = this.state
-        if(checkStorage() !== null){
-        switch (currentUser) {
+        if(checkStorage() !== null && checkStorage() !== undefined){
+            switch (currentUser) {
             case 'TeamLeader':
                 return <>{this.props.children[0]}</>
             case 'TeamCoLeader':

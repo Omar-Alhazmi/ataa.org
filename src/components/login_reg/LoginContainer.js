@@ -3,19 +3,19 @@ import '../styles/footer.css';
 import Footer from '../footer/Footer';
 import '../styles/login.css';
 import Swal from "sweetalert2";
-import { getInfo } from "../helperMethods";
+import { getInfo,checkStorage } from "../helperMethods";
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { createBrowserHistory } from 'history';
-import  apiURL  from '../api_config/ApiConfig';
+import apiURL from '../api_config/ApiConfig';
 
 const history = createBrowserHistory();
 export default class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      Email:"",
-      password:""
+    this.state = {
+      Email: "",
+      password: ""
     }
     this.handleChange = this.handleChange.bind(this);
     this.handelSubmit = this.handelSubmit.bind(this);
@@ -26,43 +26,47 @@ export default class LoginContainer extends Component {
     });
   }
   handelSubmit(e) {
-        e.preventDefault();
-        axios
+    e.preventDefault();
+    axios
       .post(`${apiURL}api/User/login`, {
         Email: this.state.Email,
         password: this.state.password
       })
       .then(res => {
+        if (res.data.success === false) {
+          return Swal.fire({ icon: 'error', title: res.data.message })
+        }
+        // else if(checkStorage() !== null || checkStorage() !== undefined ){
+        //   console.log(checkStorage() );
+        //   return Swal.fire({ icon: 'warning', title: "الحساب مسجل دخول  من قبل ",showConfirmButton: false,timer: 1500 })
+        // }
         localStorage.setItem("currentUser", res.data.token);
         let jwt = getInfo().data.Role;
-        console.log(jwt);
         if (jwt === undefined) {
           history.push("/");
           Swal.fire(` ${jwt}`, "", 'error');
         }
         else if (jwt === "TeamLeader") {
           console.log(jwt);
-          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+          Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
           history.push('/#/TeamLeader')
         } else if (jwt === "TeamCoLeader") {
           console.log(jwt);
           history.push("/");
-          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+          Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
         } else if (jwt === "TeamMember") {
           history.push("/");
-          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
+          Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
         } else if (jwt === "GeneralMember") {
           history.push("/");
-          Swal.fire(` مرحبا  ${getInfo().data.FullName} `, 'success');
-        }else{
+          Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
+        } else {
           Swal.fire(` اسم المستخدم او الرقم السري غير صحيح`, "", 'error');
         }
-      window.location.reload(false);
-        return res; 
-  })
-}
-
-
+        window.location.reload(false);
+        return res;
+      })
+  }
   render() {
     return (
       <>
@@ -73,30 +77,31 @@ export default class LoginContainer extends Component {
                 <svg x="0px" y="0px" width="12px" height="13px">
                 </svg>
               </label>
-              <input id="username" 
-              className='lf--input' 
-              placeholder='البريد الالكتروني' 
-              name="Email"
-              type="text"
-              onChange={e => this.handleChange(e)}
-              value={this.state.Email} />
+              <input id="username"
+                required
+                className='lf--input'
+                placeholder='البريد الالكتروني'
+                name="Email"
+                type="text"
+                onChange={e => this.handleChange(e)}
+                value={this.state.Email} />
             </div>
             <div className="flex-row">
               <label className="lf--label" for="password">
                 <svg x="0px" y="0px" width="15px" height="5px">
                 </svg>
               </label>
-              <input id="password" 
-              className='lf--input' 
-              placeholder='كلمة المرور'
-              name="password"
-               type='password'
-               onChange={e => this.handleChange(e)}
-               value={this.state.password} />
+              <input id="password"
+                className='lf--input'
+                placeholder='كلمة المرور'
+                name="password"
+                type='password'
+                onChange={e => this.handleChange(e)}
+                value={this.state.password} />
             </div>
-            <input className='lf--submit' type='submit' value='تسجيل الدخول' onClick={e => this.handelSubmit(e)}/>
+            <input className='lf--submit' type='submit' value='تسجيل الدخول' onClick={e => this.handelSubmit(e)} />
             <Link to={'Register'} className='lf--submit' type='submit'>
-            تسجيل جديد
+              تسجيل جديد
             </Link>
           </form>
         </div>
