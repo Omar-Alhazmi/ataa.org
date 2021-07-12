@@ -44,7 +44,7 @@ export const TeamRegistration = (req,id) => {
       GeneralGoal: req.GeneralGoal,
       SpecificGoal: req.SpecificGoal,
      },
-     config
+    config
   })
 }
 

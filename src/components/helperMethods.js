@@ -6,3 +6,8 @@ export const checkStorage = () => {
 export const getInfo = () => {
     return jwt_decode(localStorage.getItem('currentUser')) ;
   };
+export const getId = ()=>{
+  if(getInfo){
+    return   getInfo().data._id
+ }
+}

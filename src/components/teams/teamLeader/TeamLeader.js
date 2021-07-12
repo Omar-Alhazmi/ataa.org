@@ -3,24 +3,26 @@ import Footer from '../../footer/Footer';
 import '../../styles/TeamLeaderLayout.css';
 import { getTeamLeader, TeamRegistration } from '../../api_config/api';
 import ApiConfig from '../../api_config/ApiConfig';
+import { getId } from '../../helperMethods';
+import { AiFillEdit } from "react-icons/ai";
 
-import { getInfo } from '../../helperMethods';
 import Swal from "sweetalert2";
 
-const id = getInfo().data._id
+
 export default class TeamLeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
             haveTeam: false,
             TeamName: "",
+            Leader: "",
             NumberOfII: 0,
             Vision: "",
             Message: "",
             GeneralGoal: "",
             SpecificGoal: "",
-            CreateAt:"",
-            Logo:"",
+            CreateAt: "",
+            Logo: "",
         }
     }
     componentDidMount() {
@@ -28,10 +30,11 @@ export default class TeamLeader extends Component {
 
     }
     checkTeaLeader = () => {
-        getTeamLeader(id)
+        getTeamLeader(getId())
             .then((res) => {
-                const {CreateAt,GeneralGoal,Message,NumberOfII,SpecificGoal,TeamName,Vision} = res.data.data
-                if (res.data.Leader._id === id) {
+                console.log(res.data);
+                const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision } = res.data.data
+                if (res.data.Leader._id === getId()) {
                     this.setState({
                         haveTeam: true,
                         CreateAt: CreateAt,
@@ -41,7 +44,8 @@ export default class TeamLeader extends Component {
                         Message: Message,
                         GeneralGoal: GeneralGoal,
                         SpecificGoal: SpecificGoal,
-                        Logo:res.data.Logo
+                        Leader: res.data.Leader.FullName,
+                        Logo: res.data.Logo
                     })
                 }
                 else {
@@ -53,7 +57,7 @@ export default class TeamLeader extends Component {
             })
     }
     addNewTeam = (Team) => {
-        TeamRegistration(Team, id)
+        TeamRegistration(Team, getId())
             .then(response => {
                 try {
                     Swal.fire({
@@ -84,27 +88,96 @@ export default class TeamLeader extends Component {
     };
 
     render() {
-        const {Logo} = this.state
-        console.log(ApiConfig+Logo);
-
+        const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision, Logo, Leader } = this.state
         return (
             <>
-                <div className="TeamLeaderContainer">
-                    <div className="header">
-                    </div>
-                    <div className="nav">
-                        <div className="firstContainer">
-                        <div className="teamImageContainer">
-                            <img className="teamImage" src={ApiConfig+Logo}/>
-                        </div>                       
-                         <div className="CustomButton">
-                             تغيير الشعار
-                        </div>
-                        </div>
-                        </div>
-                    <div className="main"> area</div>
-                    <div  className="footer">div </div >
+
+                <h1>
+                 {TeamName}
+                </h1>
+                <img class="profile" src={`${ApiConfig}${Logo}`} />
+                <h4>
+                    <span class="meta-data">{NumberOfII}</span>
+                    <span class="meta-data">{CreateAt.slice(0,10)}</span>
+                    <h1>
+                {Leader}
+                </h1>
+                </h4>
+                <div className="teamLContainer">
+                <div className="contentSection_1">
+                <h2>
+                   الرؤية:
+                </h2>
+                <p>
+                 {Vision}     
+                </p>
+                <h2>
+                الرسالة:
+                </h2>
+                <p>
+                 {Message}     
+                </p>
                 </div>
+                <div className="contentSection_2">
+                <h2>
+                الهدف العام:
+                </h2>
+                <p>
+                 {GeneralGoal}     
+                </p>
+                <h2>
+            الاهداف التفصيلية:
+                </h2>
+                <p>
+                 {SpecificGoal}     
+                </p>
+                </div>
+                </div>
+                <hr />
+                <h2>
+                    MEET THE CREW
+                </h2>
+                <div class="crew-members">
+                    <div class="member">
+                        <p>
+                            Ricky Bobby
+                        </p>
+                        <img class="thumb" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/bat-mag-layout.JPG" />
+                        <p class="crew-text">
+                            This is Ricky Bobby. He is awesome. Don't put a curse on him.
+                        </p>
+                        <p class="crew-text">
+                            t: @rickybobby<br />f: facebook.com/rickybobby
+                        </p>
+                    </div>
+                    <div class="member">
+                        <p>
+                            Ricky Bobby
+                        </p>
+                        <img class="thumb" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/bat-mag-layout.JPG" />
+                        <p class="crew-text">
+                            This is Ricky Bobby. He is awesome. Don't put a curse on him.
+                        </p>
+                        <p class="crew-text">
+                            t: @rickybobby<br />f: facebook.com/rickybobby
+                        </p>
+                    </div>
+                    <div class="member">
+                        <p>
+                            Ricky Bobby
+                        </p>
+                        <img class="thumb" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/bat-mag-layout.JPG" />
+                        <p class="crew-text">
+                            This is Ricky Bobby. He is awesome. Don't put a curse on him.
+                        </p>
+                        <p class="crew-text">
+                            t: @rickybobby<br />f: facebook.com/rickybobby
+                        </p>
+                    </div>
+                </div>
+                <h1>
+                    @thebatman &copy;2014
+                </h1>
                 <Footer />
             </>
         )
