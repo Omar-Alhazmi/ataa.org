@@ -91,93 +91,106 @@ export default class TeamLeader extends Component {
         const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision, Logo, Leader } = this.state
         return (
             <>
-
-                <h1>
-                 {TeamName}
-                </h1>
-                <img class="profile" src={`${ApiConfig}${Logo}`} />
-                <h4>
-                    <span class="meta-data">{NumberOfII}</span>
-                    <span class="meta-data">{CreateAt.slice(0,10)}</span>
-                    <h1>
-                {Leader}
-                </h1>
+             <div className="teamContainer">
+                     <div className="editImageOnHover" style={{ backgroundImage:`url(${ApiConfig}${Logo})`,   backgroundRepeat: `no-repeat`}}>
+                        <div className="editIcon">
+                                                     <AiFillEdit/>
+                            </div>                 </div>
+                <h4 className="heading_4">
+                    <span className="meta-data">{NumberOfII}</span>
+                    <span className="meta-data">{CreateAt.slice(0,10)}</span>
                 </h4>
-                <div className="teamLContainer">
+                <h1 className="teamName">{TeamName}</h1>
+                <div className="editContentOnHover">
+                <div className="teamMainDisplayContainer">
+                <div className="editIcon">  <AiFillEdit/> </div> 
                 <div className="contentSection_1">
-                <h2>
+                <h2 className="heading_2">
                    الرؤية:
                 </h2>
-                <p>
+                <p className="discretion">
                  {Vision}     
                 </p>
-                <h2>
+                <h2 className="heading_2">
                 الرسالة:
                 </h2>
-                <p>
+                <p className="discretion">
                  {Message}     
                 </p>
                 </div>
                 <div className="contentSection_2">
-                <h2>
+                <h2 className="heading_2">
                 الهدف العام:
                 </h2>
-                <p>
+                <p className="discretion">
                  {GeneralGoal}     
                 </p>
-                <h2>
+                <h2 className="heading_2">
             الاهداف التفصيلية:
                 </h2>
-                <p>
+                <p className="discretion">
                  {SpecificGoal}     
                 </p>
                 </div>
                 </div>
-                <hr />
-                <h2>
-                    MEET THE CREW
-                </h2>
-                <div class="crew-members">
-                    <div class="member">
-                        <p>
-                            Ricky Bobby
-                        </p>
-                        <img class="thumb" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/bat-mag-layout.JPG" />
-                        <p class="crew-text">
-                            This is Ricky Bobby. He is awesome. Don't put a curse on him.
-                        </p>
-                        <p class="crew-text">
-                            t: @rickybobby<br />f: facebook.com/rickybobby
-                        </p>
-                    </div>
-                    <div class="member">
-                        <p>
-                            Ricky Bobby
-                        </p>
-                        <img class="thumb" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/bat-mag-layout.JPG" />
-                        <p class="crew-text">
-                            This is Ricky Bobby. He is awesome. Don't put a curse on him.
-                        </p>
-                        <p class="crew-text">
-                            t: @rickybobby<br />f: facebook.com/rickybobby
-                        </p>
-                    </div>
-                    <div class="member">
-                        <p>
-                            Ricky Bobby
-                        </p>
-                        <img class="thumb" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/bat-mag-layout.JPG" />
-                        <p class="crew-text">
-                            This is Ricky Bobby. He is awesome. Don't put a curse on him.
-                        </p>
-                        <p class="crew-text">
-                            t: @rickybobby<br />f: facebook.com/rickybobby
-                        </p>
-                    </div>
                 </div>
-                <h1>
-                    @thebatman &copy;2014
-                </h1>
+                <hr className="H_line" />
+                <h2 className="heading_2">
+                  اعضاء الفريق
+                </h2>
+                <div className="crew-members">
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+    
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader}
+                        </p>
+                    </div>
+           
+                </div>
+                </div>
                 <Footer />
             </>
         )

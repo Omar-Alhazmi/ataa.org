@@ -1,131 +1,202 @@
 @import url(https://fonts.googleapis.com/css?family=Old+Standard+TT);
 @import url(https://fonts.googleapis.com/css?family=Roboto);
-.teamLContainer {
+
+/* @import   '../../image/pt_bg.jpeg'; */
+.teamMainDisplayContainer {
   display: grid;
   width: 100%;
   grid-template-columns: 50% 1fr;
-  /* max-width: 760px;
-  margin: 0 auto;
-  padding: 1em; */
+  background-image: url(../../image/pt_bg.jpeg);
   text-align: right;
-  font-family: "Roboto", sans-serif;
   font-size: 1.1875em;
   line-height: 1.421052632em;
-} 
-
-
-
-.teamLContainer > .contentSection_1 {
-  background-color: #ffa08c;
+  z-index: 1;
 }
 
-.teamLContainer > .contentSection_2 {
-  background-color: #ffff64;
+.teamContainer {
+  font-family: Arial, Helvetica, sans-serif !important;
+
 }
 
-.teamName, h2, h4, .meta-data {
+.heading_1,
+.heading_4,
+.meta-data {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
-.teamName {
+.heading_1 h1 {
   font-weight: 900;
   font-size: 3em;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
-.teamName:first-of-type {
+.heading_1:first-of-type {
   font-family: "Old Standard TT", serif;
   text-align: right;
   color: rgba(0, 0, 0, 0.4);
   font-size: 1.4em;
 }
 
-.teamName:last-of-type {
+.heading_2 {
+  margin: 2% 0 2%;
+  font-size: 1.2em;
+}
+
+.heading_1:last-of-type {
   margin-top: 4em;
   font-size: 0.7em;
   text-align: right;
   color: black;
 }
 
-h4 {
+.heading_4 {
   font-weight: normal;
   font-size: 0.8em;
 }
 
-hr {
+.H_line {
   height: 10px;
   background-color: rgba(0, 0, 0, 0.8);
   margin-top: 2.42105263em;
   margin-bottom: 1.42105263em;
 }
 
-p {
+.discretion {
+  font-family: Arial, Helvetica, sans-serif;
+
   -webkit-column-count: 2;
   -moz-column-count: 2;
   column-count: 2;
-}
-
-i {
-  margin-right: 5px;
-  color: rgba(0, 0, 0, 0.8);
 }
 
 .meta-data {
   display: inline-block;
   background-color: #e74c3c;
   color: white;
-  padding: 2px 4px;
+  padding: 2px 43px;
 }
 
-.profile {
+.editImageOnHover {
   display: block;
   width: 250px;
   height: 250px;
   margin: 0 auto;
-  border-radius: 50% 50% 50% 0;
+  border-radius: 50%;
 }
 
 .crew-members {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .member {
+  margin: 2px;
   border-left: 8px solid #e74c3c;
   flex: 1;
   padding-left: 0.5em;
   box-sizing: border-box;
 }
+
 .member p {
   margin: 0;
   padding: 0;
   -webkit-column-count: 1;
 }
+
 .member .thumb {
   width: 100px;
   height: 100px;
   margin: 10px 0;
   border-radius: 50% 50% 50% 0;
 }
+
 .member .crew-text {
   font-size: 0.5em;
   width: 80%;
 }
 
+.teamName {
+  font-size: larger;
+  text-align: center;
+  margin: 2%;
+}
+
+.teamMainDisplayContainer .editIcon {
+  display: none;
+}
+
+.teamMainDisplayContainer:hover .editIcon {
+  display: grid;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+  position: absolute;
+  align-items: center;
+  color: #ffff;
+}
+
+.teamMainDisplayContainer .editIcon svg {
+  display: flex;
+  margin: 88px 409px;
+  align-items: center;
+}
+
+.editImageOnHover .editIcon {
+  cursor: pointer;
+  display: none;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+}
+
+.editImageOnHover .editIcon svg {
+  display: flex;
+  margin: 47% 47%;
+  align-items: center;
+}
+
+.editImageOnHover:hover .editIcon {
+  display: flex;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  z-index: 10;
+  color: #ffff;
+}
+
 @media screen and (max-width: 600px) {
-  .teamName {
+  .teamMainDisplayContainer {
+    padding: 1% 3%;
+    grid-template-columns: none;
+    grid-template-rows: 201px;
+    margin-top: 10px;
+    grid-template-columns: none;
+  }
+
+  .heading_1 {
     font-size: 1.4em;
   }
 
-  p {
+  .discretion {
     -webkit-column-count: 1;
     -moz-column-count: 1;
     column-count: 1;
   }
 
   .crew-members {
+    display: flex;
     flex-flow: row wrap;
   }
 
+  .teamMainDisplayContainer .editIcon svg {
+    margin: 159px 172px;
+  }
+
   .member {
+    margin: 2px;
     margin-bottom: 20px;
     flex: 1 100%;
   }
