@@ -2,16 +2,21 @@ import apiURL from'./ApiConfig';
 import axios from 'axios';
 import {checkStorage} from '../helperMethods';
 //================== Helper Method ============================||
-const config ={
+const file ={
     headers:{
-        "Content-type": "application/json"
+        "Content-type": "application/json",
+        'Content-Type': 'multipart/form-data'
     }
   }
   if(checkStorage()){
-    config.headers['Authorization'] = `Bearer ${checkStorage()}`
+    file.headers['Authorization'] = `Bearer ${checkStorage()}`
   }
+  // const file ={
+  //   headers:{
+  //   'Content-Type': 'multipart/form-data'
+  //   }
+  // }
 //================== Helper Method ============================||
-
 //---------------All POST Request-------------------//
 
 export const UserRegistration = req => {
@@ -44,10 +49,30 @@ export const TeamRegistration = (req,id) => {
       GeneralGoal: req.GeneralGoal,
       SpecificGoal: req.SpecificGoal,
      },
-    config
+    file
   })
 }
-
+//========================= =============================\\
+export const UpdateTeam = (req,id) => {
+  let formData = new FormData();
+  formData.append("file", file);
+  console.log(formData);
+  console.log(req);
+  return axios({
+    method: 'patch',
+    url: apiURL + `api/Update/TeamBy/${id}`,formData,
+    data:{
+      TeamName: req.TeamName,
+      NumberOfII: req.NumberOfII,
+      Vision: req.Vision,
+      Message: req.Message,
+      GeneralGoal: req.GeneralGoal,
+      SpecificGoal: req.SpecificGoal,
+      Logo:req.Logo
+     },
+    file
+  })
+}
 //---------------All GET Request-------------------//
 export const getAllNews = () =>{
     return axios.get(`${apiURL}api/get/All/News`);
@@ -56,6 +81,6 @@ export const getAllTeams = () =>{
     return axios.get(`${apiURL}api/get/allTeams`);
   }
   export const getTeamLeader = (id) =>{
-    return axios.get(`${apiURL}api/get/Team/ByUser/${id}`,config);
+    return axios.get(`${apiURL}api/get/Team/ByUser/${id}`,file);
   }  
 
