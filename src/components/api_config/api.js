@@ -2,20 +2,19 @@ import apiURL from'./ApiConfig';
 import axios from 'axios';
 import {checkStorage} from '../helperMethods';
 //================== Helper Method ============================||
-const file ={
+const config ={
     headers:{
         "Content-type": "application/json",
-        'Content-Type': 'multipart/form-data'
     }
   }
   if(checkStorage()){
-    file.headers['Authorization'] = `Bearer ${checkStorage()}`
+    config.headers['Authorization'] = `Bearer ${checkStorage()}`
   }
-  // const file ={
-  //   headers:{
-  //   'Content-Type': 'multipart/form-data'
-  //   }
-  // }
+  const file ={
+    headers:{
+    'Content-Type': 'multipart/form-data'
+    }
+  }
 //================== Helper Method ============================||
 //---------------All POST Request-------------------//
 
@@ -49,18 +48,14 @@ export const TeamRegistration = (req,id) => {
       GeneralGoal: req.GeneralGoal,
       SpecificGoal: req.SpecificGoal,
      },
-    file
+     config
   })
 }
 //========================= =============================\\
-export const UpdateTeam = (req,id) => {
-  let formData = new FormData();
-  formData.append("file", file);
-  console.log(formData);
-  console.log(req);
+export const UpdateTeam = (req,id,formData) => {
   return axios({
     method: 'patch',
-    url: apiURL + `api/Update/TeamBy/${id}`,formData,
+    url: apiURL + `api/Update/TeamBy/${id}`, file,
     data:{
       TeamName: req.TeamName,
       NumberOfII: req.NumberOfII,
@@ -68,9 +63,9 @@ export const UpdateTeam = (req,id) => {
       Message: req.Message,
       GeneralGoal: req.GeneralGoal,
       SpecificGoal: req.SpecificGoal,
-      Logo:req.Logo
-     },
-    file
+      Logo:formData
+    },
+     config
   })
 }
 //---------------All GET Request-------------------//
@@ -81,6 +76,6 @@ export const getAllTeams = () =>{
     return axios.get(`${apiURL}api/get/allTeams`);
   }
   export const getTeamLeader = (id) =>{
-    return axios.get(`${apiURL}api/get/Team/ByUser/${id}`,file);
+    return axios.get(`${apiURL}api/get/Team/ByUser/${id}`,config);
   }  
 

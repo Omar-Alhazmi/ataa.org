@@ -4,13 +4,16 @@ import ApiConfig from '../../api_config/ApiConfig';
 
 export default class TeamLeaderDisplay extends Component {
     render() {
-        console.log(this.props);
-        const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision, Logo,Leader } =this.props.data
+        const {Logo,Leader} =this.props.data
+        const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision} =this.props.data.teamData
         return (
             <div>
                 {CreateAt !== undefined ?
                  <div className="teamContainer">
-                    <div className="editImageOnHover" style={{ backgroundImage: `url(${ApiConfig}${Logo})`, backgroundRepeat: `no-repeat` }}>
+                    <div className="editImageOnHover"
+                     //style={{ backgroundImage: `url(${ApiConfig}${Logo})`, backgroundRepeat: `no-repeat` }}
+                     >
+                        <img src={`${ApiConfig}${Logo}`} />
                         <div className="editIcon" onClick={e => this.props.toggleHandler(e)} >
                             <AiFillEdit />
                         </div>                 </div>

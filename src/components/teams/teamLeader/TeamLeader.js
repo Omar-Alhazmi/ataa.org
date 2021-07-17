@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import Footer from '../../footer/Footer';
 import '../../styles/TeamLeaderLayout.css';
-import { getTeamLeader, TeamRegistration,UpdateTeam } from '../../api_config/api';
-import { getId } from '../../helperMethods';
+import { getTeamLeader, TeamRegistration, UpdateTeam } from '../../api_config/api';
+import { getId,checkStorage } from '../../helperMethods';
 import Swal from "sweetalert2";
 import '../../styles/team.scss';
 import TeamLeaderDisplay from './TeamLeaderDisplay';
 import TeamLeaderForm from './TeamLeaderForm';
+import apiURL from'../../api_config/ApiConfig';
+import axios from 'axios';
+// import {checkStorage} from '../helperMethods';
 export default class TeamLeader extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +17,9 @@ export default class TeamLeader extends Component {
             haveTeam: false,
             show: false,
             Leader: "",
-                teamId:"",
+            Logo: "",
+            teamId: "",
+            teamData: {
                 NumberOfII: 0,
                 TeamName: "",
                 Vision: "",
@@ -22,8 +27,8 @@ export default class TeamLeader extends Component {
                 GeneralGoal: "",
                 SpecificGoal: "",
                 CreateAt: "",
-                Logo: "",
-        
+            }
+
         }
         this.handleChange = this.handleChange.bind(this);
         this.handelSubmit = this.handelSubmit.bind(this);
@@ -36,14 +41,14 @@ export default class TeamLeader extends Component {
     checkTeaLeader = () => {
         getTeamLeader(getId())
             .then((res) => {
-                console.log(res);
                 const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision } = res.data.data
                 if (res.data.Leader._id === getId()) {
                     this.setState({
                         haveTeam: true,
                         Leader: res.data.Leader.FullName,
-
-                            teamId:res.data._id,
+                        Logo: res.data.Logo,
+                        teamId: res.data._id,
+                        teamData: {
                             CreateAt: CreateAt,
                             TeamName: TeamName,
                             NumberOfII: NumberOfII,
@@ -51,8 +56,7 @@ export default class TeamLeader extends Component {
                             Message: Message,
                             GeneralGoal: GeneralGoal,
                             SpecificGoal: SpecificGoal,
-                            Logo: res.data.Logo
-                    
+                        }
                     })
                 }
                 else {
@@ -64,7 +68,7 @@ export default class TeamLeader extends Component {
             })
     }
     addNewTeam = (Team) => {
-       const teamId = this.state.teamId
+        const teamId = this.state.teamId
         TeamRegistration(Team, teamId)
             .then(response => {
                 try {
@@ -84,172 +88,92 @@ export default class TeamLeader extends Component {
                 }
             })
     }
-    UpdateTeam = (Team) => {
-        const teamId = this.state.teamId
-
-        UpdateTeam(Team, teamId)
-            .then(response => {
-                try {
-                    Swal.fire({
-                        title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
-                        icon: 'success',
-                        confirmButtonText: 'موافق',
-                        showCancelButton: false,
-                    })
-                }
-                catch (error) {
-                    Swal.fire({
-                        title: ` ${response.data.message}`,
-                        icon: 'error',
-                        showCancelButton: false,
-                    })
-                }
-            })
+    UpdateTeam = (Team,Logo) => {
+        const config ={
+            headers:{
+                "Content-type": "application/json",
+            }
+          }
+          if(checkStorage()){
+            config.headers['Authorization'] = `Bearer ${checkStorage()}`
+          }
+          const file ={
+            headers:{
+            'Content-Type': 'multipart/form-data'
+            }
+          }
+        console.log(Team,Logo);
+      const {teamId }= this.state
+      const formData = new FormData();
+      formData.append('file',Logo)
+        console.warn(Team);
+        axios({method: 'patch', url: apiURL + `api/Update/TeamBy/${teamId}`,file,data:{ Team,formData}, config }) 
+         .then(response => {
+            try {
+                console.log(response);
+                Swal.fire({
+                    title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
+                    icon: 'success',
+                    confirmButtonText: 'موافق',
+                    showCancelButton: false,
+                })
+            }
+            catch (error) {
+                Swal.fire({
+                    title: ` ${response.data.message}`,
+                    icon: 'error',
+                    showCancelButton: false,
+                })}})
+        // UpdateTeam(Team, teamId,data)
+        //     .then(response => {
+        //         try {
+        //             console.log(response);
+        //             Swal.fire({
+        //                 title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
+        //                 icon: 'success',
+        //                 confirmButtonText: 'موافق',
+        //                 showCancelButton: false,
+        //             })
+        //         }
+        //         catch (error) {
+        //             Swal.fire({
+        //                 title: ` ${response.data.message}`,
+        //                 icon: 'error',
+        //                 showCancelButton: false,
+        //             })
+        //         }
+        //     })
     }
     handleChange(e) {
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-      }
+        const teamData = { ...this.state.teamData, [e.target.name]: e.target.value }
+        this.setState(() => ({ teamData }))
+        if(e.target.files){
+                const file = e.target.files[0];
+                this.setState({ Logo: file })
+        }
+    }
 
     handelSubmit = e => {
         e.preventDefault();
-        const  { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision, Logo } =this.state
+        const {Logo,teamData}= this.state
         if (this.state.haveTeam === false) {
-            this.addNewTeam(CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision, Logo);
-        }else{
-            this.UpdateTeam(CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision, Logo);
+            this.addNewTeam(teamData);
+        } else {
+            this.UpdateTeam(teamData,Logo);
         }
     };
     toggleHandler = (e) => {
         this.setState({ show: !this.state.show })
     }
-    validFileType = (file) =>{
-        const fileTypes = [
-             "image/apng",
-             "image/bmp",
-             "image/gif",
-             "image/jpeg",
-             "image/pjpeg",
-             "image/png",
-             "image/svg+xml",
-             "image/tiff",
-             "image/webp",
-             "image/x-icon"
-           ];
-         return fileTypes.includes(file.type);
-       }
+
     render() {
-           const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision, Logo,Leader, show } = this.state
+        const { Logo, Leader, show } = this.state
+        // const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision } = this.state.teamData
         return (
             <>                {show === true ?
-                <div className="modalContainer">
-                <form className='login-form' onSubmit={e => this.handelSubmit(e)}>
-                <div className="flex-row">
-                        <label className="lf--label" for="Logo">
-                            <svg x="0px" y="0px" width="12px" height="13px">
-                            </svg>
-                        </label>
-                        <input id="Logo"
-                            required
-                            className='lf--input'
-                            // placeholder={Logo}
-                            name="Logo"
-                             accept={this.validFileType(Logo)}
-                            type="file"
-                            onChange={e=>this.handleChange(e)}
-                     // value={Logo}
-                      />
-                    </div>
-                    <div className="flex-row">
-                        <label className="lf--label" for="Vision">
-                            <svg x="0px" y="0px" width="12px" height="13px">
-                            </svg>
-                        </label>
-                        <input id="Vision"
-                            required
-                            className='lf--input'
-                            // placeholder={Vision}
-                            name="Vision"
-                            type="text"
-                            onChange={e=>this.handleChange(e)}
-                            value={Vision} />
-                    </div>
-                    <div className="flex-row">
-                        <label className="lf--label" for="Message">
-                            <svg x="0px" y="0px" width="12px" height="13px">
-                            </svg>
-                        </label>
-                        <input id="Message"
-                            required
-                            className='lf--input'
-                            // placeholder={Message}
-                            name="Message"
-                            type="text"
-                            onChange={e=>this.handleChange(e)}
-                            value={Message} />
-                    </div>
-                    <div className="flex-row">
-                        <label className="lf--label" for="SpecificGoal">
-                            <svg x="0px" y="0px" width="12px" height="13px">
-                            </svg>
-                        </label>
-                        <input id="SpecificGoal"
-                            required
-                            className='lf--input'
-                            // placeholder={SpecificGoal}
-                            name="SpecificGoal"
-                            type="text"
-                            onChange={e=>this.handleChange(e)}
-                            value={SpecificGoal} />
-                    </div>
-                    <div className="flex-row">
-                        <label className="lf--label" for="GeneralGoal">
-                            <svg x="0px" y="0px" width="12px" height="13px">
-                            </svg>
-                        </label>
-                        <input id="GeneralGoal"
-                            required
-                            className='lf--input'
-                            // placeholder={GeneralGoal}
-                            name="GeneralGoal"
-                            type="text"
-                            onChange={e=>this.handleChange(e)}
-                            value={GeneralGoal} />
-                    </div>
-                    <div className="flex-row">
-                        <label className="lf--label" for="NumberOfII">
-                            <svg x="0px" y="0px" width="12px" height="13px">
-                            </svg>
-                        </label>
-                        <input id="NumberOfII"
-                            required
-                            className='lf--input'
-                            // placeholder={NumberOfII}
-                            name="NumberOfII"
-                            type="number"
-                            onChange={e=>this.handleChange(e)}
-                            value={NumberOfII} />
-                    </div>
-                    <div className="flex-row">
-                        <label className="lf--label" for="CreateAt">
-                            <svg x="0px" y="0px" width="12px" height="13px">
-                            </svg>
-                        </label>
-                        <input id="CreateAt"
-                            required
-                            className='lf--input'
-                            // placeholder={CreateAt}
-                            name="CreateAt"
-                            type="date"
-                            onChange={e=>this.handleChange(e)}
-                            value={CreateAt} />
-                    </div>
-                    <input className='lf--submit' type='submit' value='تسجيل الدخول' onSubmit={e => this.handelSubmit(e)} onClick={this.handelSubmit,this.toggleHandler} />
-                </form>
-            </div>
+                <TeamLeaderForm Logo={Logo} Leader={Leader} show={Leader} data={this.state.teamData} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)}/>
                 : ""}
-               <TeamLeaderDisplay data={this.state} toggleHandler={this.toggleHandler}/>
+                <TeamLeaderDisplay data={this.state} toggleHandler={this.toggleHandler} />
                 <Footer />
             </>
         )
