@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import Footer from '../../footer/Footer';
 import '../../styles/TeamLeaderLayout.css';
 import { getTeamLeader, TeamRegistration, UpdateTeam } from '../../api_config/api';
-import { getId,checkStorage } from '../../helperMethods';
+import { getId, checkStorage } from '../../helperMethods';
 import Swal from "sweetalert2";
 import '../../styles/team.scss';
 import TeamLeaderDisplay from './TeamLeaderDisplay';
 import TeamLeaderForm from './TeamLeaderForm';
-import apiURL from'../../api_config/ApiConfig';
+import apiURL from '../../api_config/ApiConfig';
 import axios from 'axios';
 // import {checkStorage} from '../helperMethods';
 export default class TeamLeader extends Component {
@@ -71,7 +71,38 @@ export default class TeamLeader extends Component {
         const teamId = this.state.teamId
         TeamRegistration(Team, teamId)
             .then(response => {
+                console.log(response);
+                if(response== "Error"){
+                    Swal.fire({
+                        title: ` ${response.data.message}`,
+                        icon: 'error',
+                        showCancelButton: false,
+                    })
+                }
                 try {
+                    Swal.fire({
+                        title: `  تم تعدي فريق    ${Team.TeamName}   بنجاح`,
+                        icon: 'success',
+                        confirmButtonText: 'موافق',
+                        showCancelButton: false,
+                    })
+                    this.toggleHandler()
+                }
+                catch (error) {
+                    Swal.fire({
+                        title: ` ${response.data.message}`,
+                        icon: 'error',
+                        showCancelButton: false,
+                    })
+                }
+            })
+    }
+    UpdateTeam = (Team) => {
+        const { teamId, Logo } = this.state
+        UpdateTeam(Team, teamId, Logo)
+            .then(response => {
+                try {
+                    console.log(response);
                     Swal.fire({
                         title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
                         icon: 'success',
@@ -88,78 +119,21 @@ export default class TeamLeader extends Component {
                 }
             })
     }
-    UpdateTeam = (Team,Logo) => {
-        const config ={
-            headers:{
-                "Content-type": "application/json",
-            }
-          }
-          if(checkStorage()){
-            config.headers['Authorization'] = `Bearer ${checkStorage()}`
-          }
-          const file ={
-            headers:{
-            'Content-Type': 'multipart/form-data'
-            }
-          }
-        console.log(Team,Logo);
-      const {teamId }= this.state
-      const formData = new FormData();
-      formData.append('file',Logo)
-        console.warn(Team);
-        axios({method: 'patch', url: apiURL + `api/Update/TeamBy/${teamId}`,file,data:{ Team,formData}, config }) 
-         .then(response => {
-            try {
-                console.log(response);
-                Swal.fire({
-                    title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
-                    icon: 'success',
-                    confirmButtonText: 'موافق',
-                    showCancelButton: false,
-                })
-            }
-            catch (error) {
-                Swal.fire({
-                    title: ` ${response.data.message}`,
-                    icon: 'error',
-                    showCancelButton: false,
-                })}})
-        // UpdateTeam(Team, teamId,data)
-        //     .then(response => {
-        //         try {
-        //             console.log(response);
-        //             Swal.fire({
-        //                 title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
-        //                 icon: 'success',
-        //                 confirmButtonText: 'موافق',
-        //                 showCancelButton: false,
-        //             })
-        //         }
-        //         catch (error) {
-        //             Swal.fire({
-        //                 title: ` ${response.data.message}`,
-        //                 icon: 'error',
-        //                 showCancelButton: false,
-        //             })
-        //         }
-        //     })
-    }
     handleChange(e) {
         const teamData = { ...this.state.teamData, [e.target.name]: e.target.value }
         this.setState(() => ({ teamData }))
-        if(e.target.files){
-                const file = e.target.files[0];
-                this.setState({ Logo: file })
-        }
     }
-
+    handleFileChange(e) {
+        const file = e.target.files[0];
+        this.setState({ Logo: file })
+    }
     handelSubmit = e => {
         e.preventDefault();
-        const {Logo,teamData}= this.state
+        const { teamData } = this.state
         if (this.state.haveTeam === false) {
             this.addNewTeam(teamData);
         } else {
-            this.UpdateTeam(teamData,Logo);
+            this.UpdateTeam(teamData);
         }
     };
     toggleHandler = (e) => {
@@ -171,7 +145,7 @@ export default class TeamLeader extends Component {
         // const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision } = this.state.teamData
         return (
             <>                {show === true ?
-                <TeamLeaderForm Logo={Logo} Leader={Leader} show={Leader} data={this.state.teamData} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)}/>
+                <TeamLeaderForm Logo={Logo} Leader={Leader} show={Leader} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
                 : ""}
                 <TeamLeaderDisplay data={this.state} toggleHandler={this.toggleHandler} />
                 <Footer />

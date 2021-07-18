@@ -3,18 +3,12 @@ import axios from 'axios';
 import {checkStorage} from '../helperMethods';
 //================== Helper Method ============================||
 const config ={
-    headers:{
-        "Content-type": "application/json",
-    }
+    headers:{}
   }
   if(checkStorage()){
     config.headers['Authorization'] = `Bearer ${checkStorage()}`
   }
-  const file ={
-    headers:{
-    'Content-Type': 'multipart/form-data'
-    }
-  }
+
 //================== Helper Method ============================||
 //---------------All POST Request-------------------//
 
@@ -52,22 +46,25 @@ export const TeamRegistration = (req,id) => {
   })
 }
 //========================= =============================\\
-export const UpdateTeam = (req,id,formData) => {
-  return axios({
-    method: 'patch',
-    url: apiURL + `api/Update/TeamBy/${id}`, file,
-    data:{
-      TeamName: req.TeamName,
-      NumberOfII: req.NumberOfII,
-      Vision: req.Vision,
-      Message: req.Message,
-      GeneralGoal: req.GeneralGoal,
-      SpecificGoal: req.SpecificGoal,
-      Logo:formData
-    },
-     config
-  })
-}
+export const UpdateTeam = (req,id,Logo) => {
+  // return axios.patch(`${apiURL} + api/Update/TeamBy/${id}`,teamData,config)}
+   const formData = new FormData();
+      Object.entries(req).forEach(([key, value]) => {
+        formData.append(key, value);
+      })
+      formData.append("Logo", Logo);
+       return axios.patch(`${apiURL}api/Update/TeamBy/${id}`,formData,config)
+       .then(res => console.log(res))
+           .catch(err => console.log(err));
+     }; 
+   // }
+    //   return axios.post("https://httpbin.org/anything", formData)
+    //       .then(res => console.log(res))
+    //       .catch(err => console.log(err));
+    // }; 
+  //return axios.patch(`${apiURL}api/Update/TeamBy/${id}`,formData,config)
+//}
+
 //---------------All GET Request-------------------//
 export const getAllNews = () =>{
     return axios.get(`${apiURL}api/get/All/News`);

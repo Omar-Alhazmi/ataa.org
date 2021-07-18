@@ -22,9 +22,11 @@ export default class TeamLeaderDisplay extends Component {
                         <span className="meta-data">{CreateAt.slice(0, 10)}</span>
                     </h4>
                     <h1 className="teamName">{TeamName}</h1>
-                    <div className="editContentOnHover">
                         <div className="teamMainDisplayContainer">
+                         <div className="editContentOnHover" onClick={e => this.props.toggleHandler(e)}>
                             <div className="editIcon">  <AiFillEdit /> </div>
+                            </div>
+                            
                             <div className="contentSection_1">
                                 <h2 className="heading_2">
                                     الرؤية:
@@ -54,7 +56,7 @@ export default class TeamLeaderDisplay extends Component {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    {/* </div> */}
                     <hr className="H_line" />
                     <h2 className="heading_2">
                         اعضاء الفريق
@@ -109,7 +111,6 @@ export default class TeamLeaderDisplay extends Component {
                                 {Leader}
                             </p>
                         </div>
-
                     </div>
 
                 </div>

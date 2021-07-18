@@ -31,13 +31,13 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="Logo"
-                                    required
+                                    // required
                                     className='lf--input'
                                     // placeholder={Logo}
-                                    // name="Logo"
-                                     accept={this.validFileType(Logo)}
+                                     name="Logo"
+                                    accept={this.validFileType(Logo)}
                                     type="file"
-                                    onChange={this.props.onNameChange}
+                                    onChange={this.props.onFileChange}
                              // value={Logo}
                               />
                             </div>
@@ -47,7 +47,7 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="Vision"
-                                    required
+                                    // required
                                     className='lf--input'
                                     // placeholder={Vision}
                                     name="Vision"
@@ -61,7 +61,7 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="Message"
-                                    required
+                                    // required
                                     className='lf--input'
                                     // placeholder={Message}
                                     name="Message"
@@ -75,7 +75,7 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="SpecificGoal"
-                                    required
+                                    // required
                                     className='lf--input'
                                     // placeholder={SpecificGoal}
                                     name="SpecificGoal"
@@ -89,7 +89,7 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="GeneralGoal"
-                                    required
+                                    // required
                                     className='lf--input'
                                     // placeholder={GeneralGoal}
                                     name="GeneralGoal"
@@ -103,7 +103,7 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="NumberOfII"
-                                    required
+                                    // required
                                     className='lf--input'
                                     // placeholder={NumberOfII}
                                     name="NumberOfII"
@@ -117,7 +117,7 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="CreateAt"
-                                    required
+                                    // required
                                     className='lf--input'
                                     // placeholder={CreateAt}
                                     name="CreateAt"
@@ -125,7 +125,7 @@ export default class TeamLeaderForm extends Component {
                                     onChange={this.props.onNameChange}
                                     value={CreateAt} />
                             </div>
-                            <input className='lf--submit' type='submit' value='تسجيل الدخول' onSubmit={this.props.onFormSubmit} onClick={this.props.onFormSubmit} />
+                            <input className='lf--submit' type='submit' value='تسجيل الدخول' onSubmit={this.props.onFormSubmit} onClick={this.props.onFormSubmit + this.props.toggleHandler}/>
                         </form>
                     </div>
             </div>
