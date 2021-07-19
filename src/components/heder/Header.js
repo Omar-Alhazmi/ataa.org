@@ -18,7 +18,7 @@ import Login from "../login_reg/LoginContainer";
 import Register from "../login_reg/Register";
 import PrivateRoute from './PrivateRoute';
 import TeamLeader from '../teams/teamLeader/TeamLeader';
-import { getInfo, checkStorage } from '../helperMethods';
+import { getInfo, checkStorage ,getId} from '../helperMethods';
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScroll] = useState(false);
@@ -35,6 +35,16 @@ const Navbar = ({ toggle }) => {
   const toggleHandler = () => {
     scroll.scrollToTop();
   };
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    {!getId() ? setTitle("انشاء فريق") :  setTitle(" اعدادات الفريق")}
+  }, []);
+
+   
+
+  // {!getId() ? setTitle("انشاء فريق") :  setTitle(" اعدادات الفريق")}
+  // }
   return (
     <>
       <Router>
@@ -81,7 +91,7 @@ const Navbar = ({ toggle }) => {
                     offset={13}
                   >الفرق التطوعية</MainHeader.NavLinks>
                 </MainHeader.NavItem>|
-                {checkStorage() !== null ? getInfo().data.Role === 'TeamLeader' ?
+                {checkStorage() !== null && getInfo().data.Role === 'TeamLeader'?
                   <MainHeader.NavItem>
                     <MainHeader.NavLinks
                       to="/TeamLeader"
@@ -90,10 +100,10 @@ const Navbar = ({ toggle }) => {
                       spy={true.toString()}
                       exact={true.toString()}
                       offset={13}
-                    >اعدادات الفريق |
+                    > {title} | 
                     </MainHeader.NavLinks>
                   </MainHeader.NavItem>
-                  : "" : ""}
+                  :""}
                 <MainHeader.NavItem>
                   <MainHeader.NavLinks to="/PrivacyPolicy" smooth={true.toString()}
                     duration={500}
