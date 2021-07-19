@@ -40,11 +40,6 @@ const Navbar = ({ toggle }) => {
   useEffect(() => {
     {!getId() ? setTitle("انشاء فريق") :  setTitle(" اعدادات الفريق")}
   }, []);
-
-   
-
-  // {!getId() ? setTitle("انشاء فريق") :  setTitle(" اعدادات الفريق")}
-  // }
   return (
     <>
       <Router>

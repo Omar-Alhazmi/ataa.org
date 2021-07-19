@@ -65,7 +65,7 @@ export default class TeamLeader extends Component {
     }
     addNewTeam = (Team) => {
         const { Logo } = this.state
-        TeamRegistration(Team, Logo)
+        TeamRegistration(Team,getId(), Logo)
             .then(response => {
                 console.log(response);
                 if(response== "Error"){

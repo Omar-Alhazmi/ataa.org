@@ -30,24 +30,18 @@ export const UserRegistration = req => {
    }
   })
 }
-export const TeamRegistration = (req,id) => {
-  return axios({
-    method: 'POST',
-    url: apiURL + `api/request/register/new/Team/${id}`,
-    data:{
-      TeamName: req.TeamName,
-      NumberOfII: req.NumberOfII,
-      Vision: req.Vision,
-      Message: req.Message,
-      GeneralGoal: req.GeneralGoal,
-      SpecificGoal: req.SpecificGoal,
-     },
-     config
+export const TeamRegistration = (req,id,Logo) => {
+  const formData = new FormData();
+  Object.entries(req).forEach(([key, value]) => {
+    formData.append(key, value);
   })
-}
+  formData.append("Logo", Logo);
+   return axios.POST(`${apiURL}api/request/register/new/Team/${id}`,formData,config)
+   .then(res => console.log(res))
+       .catch(err => console.log(err));
+ }; 
 //========================= =============================\\
 export const UpdateTeam = (req,id,Logo) => {
-  // return axios.patch(`${apiURL} + api/Update/TeamBy/${id}`,teamData,config)}
    const formData = new FormData();
       Object.entries(req).forEach(([key, value]) => {
         formData.append(key, value);
@@ -57,13 +51,6 @@ export const UpdateTeam = (req,id,Logo) => {
        .then(res => console.log(res))
            .catch(err => console.log(err));
      }; 
-   // }
-    //   return axios.post("https://httpbin.org/anything", formData)
-    //       .then(res => console.log(res))
-    //       .catch(err => console.log(err));
-    // }; 
-  //return axios.patch(`${apiURL}api/Update/TeamBy/${id}`,formData,config)
-//}
 
 //---------------All GET Request-------------------//
 export const getAllNews = () =>{
