@@ -31,14 +31,12 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="Logo"
-                                    // required
+                                    //  required
                                     className='lf--input'
-                                    // placeholder={Logo}
                                      name="Logo"
                                     accept={this.validFileType(Logo)}
                                     type="file"
                                     onChange={this.props.onFileChange}
-                             // value={Logo}
                               />
                             </div>
                             <div className="flex-row">
@@ -47,9 +45,9 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="Vision"
-                                    // required
+                                     required
                                     className='lf--input'
-                                    // placeholder={Vision}
+                                     placeholder={Vision}
                                     name="Vision"
                                     type="text"
                                     onChange={this.props.onNameChange}
@@ -61,9 +59,9 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="Message"
-                                    // required
+                                     required
                                     className='lf--input'
-                                    // placeholder={Message}
+                                     placeholder={Message}
                                     name="Message"
                                     type="text"
                                     onChange={this.props.onNameChange}
@@ -75,9 +73,9 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="SpecificGoal"
-                                    // required
+                                    required
                                     className='lf--input'
-                                    // placeholder={SpecificGoal}
+                                     placeholder={SpecificGoal}
                                     name="SpecificGoal"
                                     type="text"
                                     onChange={this.props.onNameChange}
@@ -89,9 +87,9 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="GeneralGoal"
-                                    // required
+                                    required
                                     className='lf--input'
-                                    // placeholder={GeneralGoal}
+                                    placeholder={GeneralGoal}
                                     name="GeneralGoal"
                                     type="text"
                                     onChange={this.props.onNameChange}
@@ -103,9 +101,9 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="NumberOfII"
-                                    // required
+                                    required
                                     className='lf--input'
-                                    // placeholder={NumberOfII}
+                                    placeholder={NumberOfII}
                                     name="NumberOfII"
                                     type="number"
                                     onChange={this.props.onNameChange}
@@ -117,9 +115,9 @@ export default class TeamLeaderForm extends Component {
                                     </svg>
                                 </label>
                                 <input id="CreateAt"
-                                    // required
+                                    required
                                     className='lf--input'
-                                    // placeholder={CreateAt}
+                                    placeholder={CreateAt}
                                     name="CreateAt"
                                     type="date"
                                     onChange={this.props.onNameChange}

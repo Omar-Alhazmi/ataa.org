@@ -7,9 +7,6 @@ import Swal from "sweetalert2";
 import '../../styles/team.scss';
 import TeamLeaderDisplay from './TeamLeaderDisplay';
 import TeamLeaderForm from './TeamLeaderForm';
-import apiURL from '../../api_config/ApiConfig';
-import axios from 'axios';
-// import {checkStorage} from '../helperMethods';
 export default class TeamLeader extends Component {
     constructor(props) {
         super(props);
@@ -36,7 +33,6 @@ export default class TeamLeader extends Component {
     }
     componentDidMount() {
         this.checkTeaLeader()
-
     }
     checkTeaLeader = () => {
         getTeamLeader(getId())
@@ -64,12 +60,12 @@ export default class TeamLeader extends Component {
                 }
             })
             .catch((err) => {
-                return Swal.fire({ icon: 'error', title: `Auth failed` })
+                return Swal.fire({ icon: 'error', title: err })
             })
     }
     addNewTeam = (Team) => {
-        const teamId = this.state.teamId
-        TeamRegistration(Team, teamId)
+        const { Logo } = this.state
+        TeamRegistration(Team, Logo)
             .then(response => {
                 console.log(response);
                 if(response== "Error"){
@@ -81,7 +77,7 @@ export default class TeamLeader extends Component {
                 }
                 try {
                     Swal.fire({
-                        title: `  تم تعدي فريق    ${Team.TeamName}   بنجاح`,
+                        title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
                         icon: 'success',
                         confirmButtonText: 'موافق',
                         showCancelButton: false,
@@ -104,7 +100,8 @@ export default class TeamLeader extends Component {
                 try {
                     console.log(response);
                     Swal.fire({
-                        title: `  تم إضافة   ${this.state.TeamName}   بنجاح`,
+                        title: `  تم تعديل فريق    ${Team.TeamName}   بنجاح`,
+
                         icon: 'success',
                         confirmButtonText: 'موافق',
                         showCancelButton: false,
@@ -141,13 +138,15 @@ export default class TeamLeader extends Component {
     }
 
     render() {
-        const { Logo, Leader, show } = this.state
-        // const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision } = this.state.teamData
+        const { Logo, Leader, show , haveTeam} = this.state
         return (
             <>                {show === true ?
                 <TeamLeaderForm Logo={Logo} Leader={Leader} show={Leader} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
                 : ""}
-                <TeamLeaderDisplay data={this.state} toggleHandler={this.toggleHandler} />
+                {haveTeam === false ?
+                 <TeamLeaderForm Logo={Logo} Leader={Leader} show={Leader} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
+                :
+                <TeamLeaderDisplay data={this.state} toggleHandler={this.toggleHandler} />}
                 <Footer />
             </>
         )
