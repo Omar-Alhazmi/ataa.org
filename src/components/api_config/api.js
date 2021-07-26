@@ -30,25 +30,32 @@ export const UserRegistration = req => {
    }
   })
 }
+//========================= =============================\\
 export const TeamRegistration = (req,id,Logo) => {
   const formData = new FormData();
   Object.entries(req).forEach(([key, value]) => {
-    formData.append(key, value);
+     formData.append(key, value)
+    
   })
+  if(Logo !== null){
   formData.append("Logo", Logo);
+  }
    return axios.POST(`${apiURL}api/request/register/new/Team/${id}`,formData,config)
-   .then(res => console.log(res))
+   .then(res => 
+    window.location.reload(false)
+    )
        .catch(err => console.log(err));
  }; 
 //========================= =============================\\
 export const UpdateTeam = (req,id,Logo) => {
    const formData = new FormData();
       Object.entries(req).forEach(([key, value]) => {
-        formData.append(key, value);
-      })
-      formData.append("Logo", Logo);
+         formData.append(key, value)}) 
+         formData.append("Logo", Logo);
        return axios.patch(`${apiURL}api/Update/TeamBy/${id}`,formData,config)
-       .then(res => console.log(res))
+       .then(res =>
+        window.location.reload(false)
+        )
            .catch(err => console.log(err));
      }; 
 

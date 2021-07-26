@@ -33,6 +33,7 @@ export default class LoginContainer extends Component {
         password: this.state.password
       })
       .then(res => {
+        try{
         if (res.data.success === false) {
           return Swal.fire({ icon: 'error', title: res.data.message })
         }
@@ -65,7 +66,11 @@ export default class LoginContainer extends Component {
         }
         window.location.reload(false);
         return res;
-      })
+      
+      }catch{
+        Swal.fire({ icon: 'error', title: res.data.message});
+
+      }})
   }
   render() {
     return (

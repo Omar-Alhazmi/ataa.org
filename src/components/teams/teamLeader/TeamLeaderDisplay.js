@@ -4,8 +4,8 @@ import ApiConfig from '../../api_config/ApiConfig';
 
 export default class TeamLeaderDisplay extends Component {
     render() {
-        const {Logo,Leader} =this.props.data
-        const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision} =this.props.data.teamData
+        const {Leader} =this.props.data
+        const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision,Logo} =this.props.data.teamData
         return (
             <div>
                 {CreateAt !== undefined ?
