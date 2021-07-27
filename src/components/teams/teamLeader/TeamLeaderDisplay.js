@@ -26,7 +26,6 @@ export default class TeamLeaderDisplay extends Component {
                          <div className="editContentOnHover" onClick={e => this.props.toggleHandler(e)}>
                             <div className="editIcon">  <AiFillEdit /> </div>
                             </div>
-                            
                             <div className="contentSection_1">
                                 <h2 className="heading_2">
                                     الرؤية:

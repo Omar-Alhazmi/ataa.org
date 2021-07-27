@@ -1,136 +1,123 @@
 import React, { Component } from 'react'
 import { BsArrowRight } from "react-icons/bs";
 import apiURL from '../api_config/ApiConfig';
-import "./table.css"
+import "../styles/TeamLeaderLayout.css"
 
 export default class currentTeam extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             teamId: this.props.id
         };
     }
     render() {
-        const data = this.props.data
+        console.log(this.props.data);
+        const { Leader, Members, Logo } = this.props.data
+        const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision } = this.props.data.data
         return (
-            <div className="teamContainer">
-                <button className="button" onClick={e => this.props.tog(e)}> <BsArrowRight /></button>
-                <div class="wrapper">
-                    <div class="table">
-                        <div class="row head first">
-                            <div class="cell table_image">
-                                <img src={apiURL + data.Logo} alt=""/>
-                            </div>
-                            <div class="cell teamName">
-                                {data.data.TeamName}
-                            </div>
+            <>
+                <div>
+                    <button className="button" onClick={e => this.props.tog(e)}> <BsArrowRight /></button>
+                    <div className="teamContainer">
+                        <div className="teamLogo">
+                            <img src={`${apiURL}${Logo}`} alt="logo" />
+                        </div>   </div>
+                    <h4 className="heading_4">
+                        <span className="meta-data">{NumberOfII}</span>
+                        <span className="meta-data">{CreateAt.slice(0, 10)}</span>
+                    </h4>
+                    <h1 className="teamName">{TeamName}</h1>
+                    <div className="teamMainDisplayContainer">
+                        <div className="contentSection_1">
+                            <h2 className="heading_2">
+                                الرؤية:
+                            </h2>
+                            <p className="discretion">
+                                {Vision}
+                            </p>
+                            <h2 className="heading_2">
+                                الرسالة:
+                            </h2>
+                            <p className="discretion">
+                                {Message}
+                            </p>
                         </div>
-                        <hr />
-                        <div class="row head">
-                            <div class="cell">
-                                قائد الفريق
-                            </div>
-                            <div class="cell">
-                                نائب قائد الفريق
-                            </div>
-                            <div class="cell">
-                                تاريخ التأسيس
-                            </div>
-                            <div class="cell">
-                                عدد الاعضاء
-                            </div>
-                            <div class="cell">
-                                عدد المبادرات المنفذة
-                            </div>
-
-                        </div>
-                        <div className="row">
-                            <div className="cell" style={{ cursor: "pointer" }} data-title="ActivityName">
-                                {data.Leader.FullName}
-                            </div>
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.Members.length}
-                            </div>
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.data.CreateAt}
-                            </div>
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.data.GeneralGoal}
-                            </div>
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.data.NumberOfII}
-                            </div>
-                        </div>
-                        <div class="row head">
-                            <div class="cell">
-                                مجال الفريق
-                            </div>
-                            <div class="cell">
-                                الرؤية
-                            </div>
-                            <div class="cell">
-                                الرسالة
-                            </div>
-                            <div class="cell">
-                                الهدف العام
-                            </div>
-                            <div class="cell">
-                                الاهداف التفصيلية
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.Members.length}
-                            </div>
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.data.Vision}
-                            </div>
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.data.Message}
-                            </div>
-                            <div className="cell" data-title="ActivityDescription">
-                                {data.data.GeneralGoal}
-                            </div>                 <div className="cell" data-title="ActivityDescription">
-                                {data.data.SpecificGoal}
-                            </div>
-                        </div>
-                             <div class="row head">
-                        <div class="cell">
-                            اعضاء الفريق
+                        <div className="contentSection_2">
+                            <h2 className="heading_2">
+                                الهدف العام:
+                            </h2>
+                            <p className="discretion">
+                                {GeneralGoal}
+                            </p>
+                            <h2 className="heading_2">
+                                الاهداف التفصيلية:
+                            </h2>
+                            <p className="discretion">
+                                {SpecificGoal}
+                            </p>
                         </div>
                     </div>
-                    <div className="row">
-                    <div className="cell" data-title="ActivityDescription">
-                                {data.Members}
-                            </div>
-                        </div>
-                    </div>
-               
                 </div>
+                <hr className="H_line" />
+                <h2 className="heading_2">
+                    اعضاء الفريق : {Members.length}
+                </h2>
+                {/* <h2 className="heading_2">
+                        {Members.length}
+                    </h2> */}
 
+                <div className="crew-members">
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
 
-
-
-
-
-                {/*
-                          <div className="cell" data-title="ActivityDescription">
-                  {data.Members.length}
-                 </div>
-         <div className="cell" data-title="ActivityDescription">
-{data.data.Vision}
-</div>
-<div className="cell" data-title="ActivityDescription">
-{data.data.Message}
-</div>
-<div className="cell" data-title="ActivityDescription">
-{data.data.GeneralGoal}
-</div>                 <div className="cell" data-title="ActivityDescription">
-{data.data.SpecificGoal}
-</div> */}
-
-            </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
+                    </div>
+                </div>
+            </>
         )
     }
 }
