@@ -25,14 +25,21 @@ justify-content: center;
 flex-direction: column;
 position: absolute;
 width: 100%;
-height: 100%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%),
     linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
     font-family: "Roboto", helvetica, arial, sans-serif;
 font-size: 1.5em;
 z-index: 99;
 }
-
+.imageLabel{
+  color: #8f8f8f;
+  font-size: 1rem;
+  margin-right: 12px;
+}
+/* .flex-row */
+.uploadLogo{
+  display: none;
+}
 .heading_1,
 .heading_4,
 .meta-data {

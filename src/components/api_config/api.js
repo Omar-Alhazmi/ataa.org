@@ -34,15 +34,14 @@ export const UserRegistration = req => {
 export const TeamRegistration = (req,id,Logo) => {
   const formData = new FormData();
   Object.entries(req).forEach(([key, value]) => {
-     formData.append(key, value)
-    
-  })
-  if(Logo !== null){
-  formData.append("Logo", Logo);
-  }
-   return axios.POST(`${apiURL}api/request/register/new/Team/${id}`,formData,config)
-   .then(res => 
-    window.location.reload(false)
+     formData.append(key, value)}) 
+     formData.append("Logo", Logo);
+   return axios.post(`${apiURL}api/request/register/new/Team/${id}`,formData,config)
+   .then(res => {
+     console.log(res);
+    localStorage.setItem("leadAt", res.data.token)
+    // window.location.reload(false)
+   }
     )
        .catch(err => console.log(err));
  }; 

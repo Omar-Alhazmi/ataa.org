@@ -34,7 +34,6 @@ export default class Register extends Component {
     // Make an api call request to add a new user 
     UserRegistration(User)
       .then(response => {
-        console.log(response);
         if (response.data.success === false) {
           Swal.fire(`Wrong ${response.data.message}`, 'error');
         }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Footer from '../../footer/Footer';
 import '../../styles/TeamLeaderLayout.css';
 import { getTeamLeader, TeamRegistration, UpdateTeam } from '../../api_config/api';
-import { getId, validFileType } from '../../helperMethods';
+import { getId, validFileType,haveTeam,newTeam } from '../../helperMethods';
 import Swal from "sweetalert2";
 import '../../styles/team.scss';
 import TeamLeaderDisplay from './TeamLeaderDisplay';
@@ -11,7 +11,6 @@ export default class TeamLeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            haveTeam: false,
             show: false,
             Leader: "",
             Logo: "",
@@ -26,22 +25,22 @@ export default class TeamLeader extends Component {
                 SpecificGoal: "",
                 CreateAt: "",
             }
-
         }
         this.handleChange = this.handleChange.bind(this);
         this.handelSubmit = this.handelSubmit.bind(this);
         this.toggleHandler = this.toggleHandler.bind(this);
     }
     componentDidMount() {
-        this.checkTeaLeader()
+        if(haveTeam() || newTeam()){
+            this.checkTeaLeader()
+        }
     }
     checkTeaLeader = () => {
         getTeamLeader(getId())
             .then((res) => {
                 const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision } = res.data.data
                 if (res.data.Leader._id === getId()) {
-                    this.setState({
-                        haveTeam: true,
+                    this.setState({  
                         Leader: res.data.Leader.FullName,
                         teamId: res.data._id,
                         teamData: {
@@ -65,13 +64,26 @@ export default class TeamLeader extends Component {
             })
     }
     addNewTeam = (Team) => {
-        const TeamData = (({ Logo, ...o }) => o)(Team) 
         const { Logo } = this.state
-        console.log(Logo);
-        TeamRegistration(TeamData,getId(), Logo)
+        if(Logo){
+            if(!validFileType(Logo)){
+                throw Swal.fire({
+                    title: ` الرجاء التأكد من امتداد  الملف  ان يكون تابع لملفات الصور`,
+                    icon: 'error',
+                    showCancelButton: false,
+                })
+            }
+            if(Logo.size > 5242880){   
+                throw Swal.fire({
+                    title: ` "5MB" :حجم الملف اكبر من `,
+                    icon: 'error',
+                    showCancelButton: false,
+                })
+            }}
+        TeamRegistration(Team,getId(), Logo)
             .then(response => {
                 console.log(response);
-                if(response== "Error"){
+                if(response === "Error"){
                     Swal.fire({
                         title: ` ${response.data.message}`,
                         icon: 'error',
@@ -113,7 +125,6 @@ export default class TeamLeader extends Component {
                 showCancelButton: false,
             })
         }}
-        console.log(Logo.size);
         UpdateTeam(Team, teamId, Logo)
             .then(response => {
                 try {
@@ -146,8 +157,8 @@ export default class TeamLeader extends Component {
     handelSubmit = e => {
         e.preventDefault();
         const { teamData } = this.state
-        const TeamData = (({Logo, ...o }) => o)(teamData) 
-        if (this.state.haveTeam === false) {
+        const TeamData = (({Logo, ...o }) => o)(teamData)
+        if (haveTeam() === false ) {
             this.addNewTeam(TeamData);
         } else {
             this.UpdateTeam(TeamData);
@@ -158,13 +169,14 @@ export default class TeamLeader extends Component {
     }
 
     render() {
-        const { Logo, Leader, show , haveTeam} = this.state
+        const { Logo, Leader, show } = this.state
         return (
-            <>                {show === true ?
+            <>  
+            {show === true ?
                 <TeamLeaderForm Logo={Logo} show={show} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} toggleHandler={this.toggleHandler}/>
                 : ""}
-                {haveTeam === false ?
-                 <TeamLeaderForm Logo={Logo} Leader={Leader} show={show} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
+                {newTeam() === false  && haveTeam() === false ?
+                 <TeamLeaderForm  Logo={Logo} Leader={Leader} show={show} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
                 :
                 <TeamLeaderDisplay data={this.state} toggleHandler={this.toggleHandler} />}
                 <Footer />

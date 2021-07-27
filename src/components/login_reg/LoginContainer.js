@@ -3,7 +3,7 @@ import '../styles/footer.css';
 import Footer from '../footer/Footer';
 import '../styles/login.css';
 import Swal from "sweetalert2";
-import { getInfo,checkStorage } from "../helperMethods";
+import { getInfo } from "../helperMethods";
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { createBrowserHistory } from 'history';

@@ -18,7 +18,7 @@ import Login from "../login_reg/LoginContainer";
 import Register from "../login_reg/Register";
 import PrivateRoute from './PrivateRoute';
 import TeamLeader from '../teams/teamLeader/TeamLeader';
-import { getInfo, checkStorage ,getId} from '../helperMethods';
+import { getInfo, checkStorage, haveTeam,newTeam } from '../helperMethods';
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScroll] = useState(false);
@@ -38,7 +38,9 @@ const Navbar = ({ toggle }) => {
   const [title, setTitle] = useState("");
 
   useEffect(() => {
-    {!getId() ? setTitle("انشاء فريق") :  setTitle(" اعدادات الفريق")}
+    if (!haveTeam() && ! newTeam()) {
+      setTitle("انشاء فريق")
+    } else { setTitle(" اعدادات الفريق") }
   }, []);
   return (
     <>
@@ -86,7 +88,7 @@ const Navbar = ({ toggle }) => {
                     offset={13}
                   >الفرق التطوعية</MainHeader.NavLinks>
                 </MainHeader.NavItem>|
-                {checkStorage() !== null && getInfo().data.Role === 'TeamLeader'?
+                {checkStorage() !== null && getInfo().data.Role === 'TeamLeader' ?
                   <MainHeader.NavItem>
                     <MainHeader.NavLinks
                       to="/TeamLeader"
@@ -95,10 +97,10 @@ const Navbar = ({ toggle }) => {
                       spy={true.toString()}
                       exact={true.toString()}
                       offset={13}
-                    > {title} | 
+                    > {title} |
                     </MainHeader.NavLinks>
                   </MainHeader.NavItem>
-                  :""}
+                  : ""}
                 <MainHeader.NavItem>
                   <MainHeader.NavLinks to="/PrivacyPolicy" smooth={true.toString()}
                     duration={500}

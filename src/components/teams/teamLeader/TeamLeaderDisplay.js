@@ -13,7 +13,7 @@ export default class TeamLeaderDisplay extends Component {
                     <div className="editImageOnHover"
                      //style={{ backgroundImage: `url(${ApiConfig}${Logo})`, backgroundRepeat: `no-repeat` }}
                      >
-                        <img src={`${ApiConfig}${Logo}`} />
+                        <img src={`${ApiConfig}${Logo}`} alt="logo" />
                         <div className="editIcon" onClick={e => this.props.toggleHandler(e)} >
                             <AiFillEdit />
                         </div>                 </div>
