@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { SidebarContainer, Icon, CloseIcon, SidebarWrapper, SidebarMenu, SidebarLink, SideBtnWrap, SidebarRoute } from './SidebarElements';
-import { haveTeam,newTeam } from '../helperMethods';
+import { leadTeam,newTeam } from '../helperMethods';
 
 const Sidebar = ({ isOpen, toggle }) => {
    const [handleDisplay, setTitle] = useState("");
    useEffect(() => {
-      if (!haveTeam() && !newTeam()) {
+      if (!leadTeam() && !newTeam()) {
          setTitle("انشاء فريق")
       } else { setTitle(" اعدادات الفريق") }
    }, []);

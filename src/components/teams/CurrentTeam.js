@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { BsArrowRight } from "react-icons/bs";
 import apiURL from '../api_config/ApiConfig';
+import {UserRegToTeam} from '../api_config/api';
+import {getId} from '../helperMethods';
 import "../styles/TeamLeaderLayout.css"
+import Swal from "sweetalert2";
 
 export default class currentTeam extends Component {
     constructor(props) {
@@ -10,14 +13,40 @@ export default class currentTeam extends Component {
             teamId: this.props.id
         };
     }
+
+handleSubmit(){
+            const  userId = getId()
+            const teamId = this.props.data._id
+            const teamName =  this.props.data.data.TeamName
+        UserRegToTeam(userId,teamId)
+        .then(response => {
+            try {
+                console.log(response);
+                Swal.fire({
+                    title: `  تم التسجيل في  فريق    ${teamName}   بنجاح`,
+                    icon: 'success',
+                    confirmButtonText: 'موافق',
+                    showCancelButton: false,
+                })
+            }
+            catch (error) {
+                Swal.fire({
+                    title: ` ${response.data.message}`,
+                    icon: 'error',
+                    showCancelButton: false,
+                })
+            }
+        })
+        }
     render() {
-        console.log(this.props.data);
         const { Leader, Members, Logo } = this.props.data
         const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision } = this.props.data.data
         return (
             <>
                 <div>
                     <button className="button" onClick={e => this.props.tog(e)}> <BsArrowRight /></button>
+                    <button className="button" onClick={e => this.handleSubmit(e)}> التسجيل في الفريق</button>
+
                     <div className="teamContainer">
                         <div className="teamLogo">
                             <img src={`${apiURL}${Logo}`} alt="logo" />

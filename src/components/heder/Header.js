@@ -18,7 +18,7 @@ import Login from "../login_reg/LoginContainer";
 import Register from "../login_reg/Register";
 import PrivateRoute from './PrivateRoute';
 import TeamLeader from '../teams/teamLeader/TeamLeader';
-import { getInfo, checkStorage, haveTeam,newTeam } from '../helperMethods';
+import { getInfo, checkStorage, leadTeam,newTeam,haveTeam } from '../helperMethods';
 
 const Navbar = ({ toggle }) => {
   const [scrollNav, setScroll] = useState(false);
@@ -36,12 +36,17 @@ const Navbar = ({ toggle }) => {
     scroll.scrollToTop();
   };
   const [title, setTitle] = useState("");
-
+  
+  const [memberNave, setMemberNave] = useState("عرض الفريق");
   useEffect(() => {
-    if (!haveTeam() && ! newTeam()) {
+    if (!leadTeam() && ! newTeam()) {
       setTitle("انشاء فريق")
     } else { setTitle(" اعدادات الفريق") }
   }, []);
+useEffect(()=>{
+if (!haveTeam()) {
+  setMemberNave("  التسجيل في فريق  ")
+}}, []);
   return (
     <>
       <Router>
@@ -78,6 +83,7 @@ const Navbar = ({ toggle }) => {
                     offset={13}
                   >الاخبار</MainHeader.NavLinks>
                 </MainHeader.NavItem>|
+                {checkStorage() !== null && getInfo().data.Role === "TeamMember" ?
                 <MainHeader.NavItem>
                   <MainHeader.NavLinks
                     to="/Teams"
@@ -86,8 +92,18 @@ const Navbar = ({ toggle }) => {
                     spy={true.toString()}
                     exact={true.toString()}
                     offset={13}
-                  >الفرق التطوعية</MainHeader.NavLinks>
-                </MainHeader.NavItem>|
+                  >{memberNave}|</MainHeader.NavLinks>
+                </MainHeader.NavItem>
+                :<MainHeader.NavItem>
+                <MainHeader.NavLinks
+                  to="/Teams"
+                  smooth={true.toString()}
+                  duration={500}
+                  spy={true.toString()}
+                  exact={true.toString()}
+                  offset={13}
+                >   الفرق التطوعية|</MainHeader.NavLinks>
+              </MainHeader.NavItem>}
                 {checkStorage() !== null && getInfo().data.Role === 'TeamLeader' ?
                   <MainHeader.NavItem>
                     <MainHeader.NavLinks
@@ -138,7 +154,8 @@ const Navbar = ({ toggle }) => {
           <PrivateRoute>
             <Route path={'/TeamLeader'} component={TeamLeader} />
             <Route path={'/Polices'} component={Polices} />
-
+            <Route path={'/Polices'} component={Polices} />
+            <Route path={'/Polices'} component={Polices} />
           </PrivateRoute>
         </Switch>
       </Router>

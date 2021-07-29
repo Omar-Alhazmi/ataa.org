@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { CgSoftwareUpload, CgEditFlipH } from "react-icons/cg";
-import { validFileType, haveTeam , newTeam} from '../../helperMethods';
+import { validFileType, leadTeam , newTeam} from '../../helperMethods';
 export default class TeamLeaderForm extends Component {
-
-    render() {
+  render() {
         const { Logo } = this.props
         const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, Vision,TeamName } = this.props.data
         let displayStatus = ""
         let logoPH = ""
-        if (haveTeam() === false && newTeam() === false){ displayStatus = "LoginContainer"}
+        if (leadTeam() === false && newTeam() === false){ displayStatus = "LoginContainer"}
         else displayStatus = "modalContainer";
         if(Logo !== "") logoPH = Logo.name
         else logoPH = "شعار الفريق";
@@ -17,7 +16,7 @@ export default class TeamLeaderForm extends Component {
                 <div className={displayStatus}>
                     <div className='login-form' >
                         <form onSubmit={this.props.onFormSubmit}>
-                            {haveTeam() === false && newTeam() === false?
+                            {leadTeam() === false && newTeam() === false?
                                 <div className="flex-row">
                                     <label className="lf--label" for="TeamName">
                                         <CgEditFlipH />

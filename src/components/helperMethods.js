@@ -20,7 +20,7 @@ export const newTeam = () => {
     return false
   }
 }
-export const haveTeam = () => {
+export const leadTeam = () => {
   if (checkStorage()) {
     if (getInfo().data.LeaderAt !== undefined) {
       return true
@@ -29,7 +29,15 @@ export const haveTeam = () => {
     }
   }
 }
-
+export const haveTeam = () => {
+  if (checkStorage()) {
+    if (getInfo().data.TeamReg !== undefined) {
+      return true
+    } else {
+      return false
+    }
+  }
+}
 export const validFileType = (file) => {
   const fileTypes = [
     "image/apng",

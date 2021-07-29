@@ -34,8 +34,8 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 10rem;
-  justify-self: center;
+  width: fit-content;
+  padding: 0 2%;  justify-self: center;
   margin-top: 10%;
   display: grid;
   align-items: center;
@@ -43,6 +43,10 @@
   align-self: center;
   justify-self: center;
   margin: 5% auto;
+}
+div>button.TeamReg.button{
+  width: fit-content;
+  padding: 0 2%;
 }
 .button:hover {
   animation-name: gradient;
@@ -53,13 +57,14 @@
   -webkit-animation-iteration-count: 1;
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
-  background: linear-gradient(to right, #a2ccb6 0%, #fceeb5 50%, #ee786e 100%);
+  background: #c6e4d1;
 
 }
 .teamContainer {
   font-family: Arial, Helvetica, sans-serif !important;
 
 }
+
 .modalContainer{
 display: flex;
 align-items: center;

@@ -40,7 +40,7 @@ export const TeamRegistration = (req,id,Logo) => {
    .then(res => {
      console.log(res);
     localStorage.setItem("leadAt", res.data.token)
-    // window.location.reload(false)
+     window.location.reload(false)
    }
     )
        .catch(err => console.log(err));
@@ -57,7 +57,15 @@ export const UpdateTeam = (req,id,Logo) => {
         )
            .catch(err => console.log(err));
      }; 
-
+//=====================  =================
+export const UserRegToTeam = (userId,teamId) => {
+  req.Members
+      return axios.patch(`${apiURL}/api/PassTeam/${teamId}`,userId,config)
+      .then(res =>
+       window.location.reload(false)
+       )
+        .catch(err => console.log(err));
+    }; 
 //---------------All GET Request-------------------//
 export const getAllNews = () =>{
     return axios.get(`${apiURL}api/get/All/News`);

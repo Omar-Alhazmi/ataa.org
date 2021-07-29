@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Footer from '../../footer/Footer';
 import '../../styles/TeamLeaderLayout.css';
 import { getTeamLeader, TeamRegistration, UpdateTeam } from '../../api_config/api';
-import { getId, validFileType,haveTeam,newTeam } from '../../helperMethods';
+import { getId, validFileType,leadTeam,newTeam } from '../../helperMethods';
 import Swal from "sweetalert2";
 import '../../styles/team.scss';
 import TeamLeaderDisplay from './TeamLeaderDisplay';
@@ -31,7 +31,7 @@ export default class TeamLeader extends Component {
         this.toggleHandler = this.toggleHandler.bind(this);
     }
     componentDidMount() {
-        if(haveTeam() || newTeam()){
+        if(leadTeam() || newTeam()){
             this.checkTeaLeader()
         }
     }
@@ -158,7 +158,7 @@ export default class TeamLeader extends Component {
         e.preventDefault();
         const { teamData } = this.state
         const TeamData = (({Logo, ...o }) => o)(teamData)
-        if (haveTeam() === false ) {
+        if (leadTeam() === false ) {
             this.addNewTeam(TeamData);
         } else {
             this.UpdateTeam(TeamData);
@@ -175,7 +175,7 @@ export default class TeamLeader extends Component {
             {show === true ?
                 <TeamLeaderForm Logo={Logo} show={show} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} toggleHandler={this.toggleHandler}/>
                 : ""}
-                {newTeam() === false  && haveTeam() === false ?
+                {newTeam() === false  && leadTeam() === false ?
                  <TeamLeaderForm  Logo={Logo} Leader={Leader} show={show} data={this.state.teamData} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
                 :
                 <TeamLeaderDisplay data={this.state} toggleHandler={this.toggleHandler} />}

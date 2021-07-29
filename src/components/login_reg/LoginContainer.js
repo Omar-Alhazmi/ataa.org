@@ -27,6 +27,15 @@ export default class LoginContainer extends Component {
   }
   handelSubmit(e) {
     e.preventDefault();
+    let checkValidation = true
+    Object.entries(this.state).forEach(([key, value]) => {
+      if (value === "") {
+        return checkValidation = false;
+      }
+    })
+    if (checkValidation === false) {
+      Swal.fire({ icon: 'error', title: "تأكد من ادخال البيانات بشكل صحيح" });
+    } else {
     axios
       .post(`${apiURL}api/User/login`, {
         Email: this.state.Email,
@@ -71,7 +80,7 @@ export default class LoginContainer extends Component {
         Swal.fire({ icon: 'error', title: res.data.message});
 
       }})
-  }
+  }}
   render() {
     return (
       <>

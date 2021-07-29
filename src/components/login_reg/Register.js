@@ -32,19 +32,37 @@ export default class Register extends Component {
   // Function to set data in ServiceDescription state
   addUser = User => {
     // Make an api call request to add a new user 
-    UserRegistration(User)
-      .then(response => {
-        if (response.data.success === false) {
-          Swal.fire(`Wrong ${response.data.message}`, 'error');
-        }
-        if (response.data.success === true) {
-          Swal.fire(`تم إرسال رسالة التأكيد الى  البريد الالكتروني `, 'success');
-        }
-      })
-      .catch(error => {
-        Swal.fire(`Wrong ${error}`, "", 'error');
-      });
-  };
+    let checkValidation = true
+    // let isGUser = false
+    const stateWithoutEducation = (({Education, ...o }) => o)(User)
+    Object.entries(stateWithoutEducation).forEach(([key, value]) => {
+      if(value === ""){
+        return checkValidation = false;
+      }
+    })
+if(checkValidation === false){
+      Swal.fire({ icon: 'error', title: " الرجاء التأكد من ادخال  جميع البيانات" });
+    }
+     else{
+      UserRegistration(User)
+        .then(response => {
+          console.log(response);
+
+          if (response.data.success === false && response.data.message === "dataFill" ) {
+            Swal.fire({ icon: 'error', title: "تأكد من ملء جميع البيانات" });
+          }
+          if (response.data.success === false && response.data.message === "Email already exists." ) {
+            Swal.fire({ icon: 'error', title: "البريد الالكتروني مسجل من قبل " });
+          }
+          if (response.data.success === true) {
+            Swal.fire({ icon: 'success', title: "تم إرسال رسالة التأكيد الى  البريد الالكتروني " });
+          }
+        })
+        .catch(error => {
+          Swal.fire({ icon: 'error', title: `حدث خطا`});
+        });
+    };
+  }
 
   handelSubmit = e => {
     // set the object of new user data 
@@ -65,6 +83,7 @@ export default class Register extends Component {
                 <AiOutlineMail />
               </label>
               <input id="Email"
+                required
                 className='lf--input'
                 placeholder='البريد الالكتروني'
                 name="Email"
@@ -76,7 +95,9 @@ export default class Register extends Component {
               <label className="lf--label" for="password">
                 <CgLastpass />
               </label>
-              <input id="password"
+              <input
+                required
+                id="password"
                 className='lf--input'
                 placeholder='كلمة المرور'
                 name="password"
@@ -91,6 +112,7 @@ export default class Register extends Component {
               <select id="Role"
                 className='lf--input'
                 name="Role"
+                required
                 onChange={e => this.handleChange(e)}
                 value={Role} >
                 <option value="" disabled>اختر نوع  التسجيل</option>
@@ -104,7 +126,9 @@ export default class Register extends Component {
 
                 <CgRename />
               </label>
-              <input id="FullName"
+              <input
+                required
+                id="FullName"
                 className='lf--input'
                 placeholder='الإسم رباعي'
                 name="FullName"
@@ -116,7 +140,9 @@ export default class Register extends Component {
               <label className="lf--label" for="NationalId">
                 <AiFillIdcard />
               </label>
-              <input id="NationalId"
+              <input
+                required
+                id="NationalId"
                 className='lf--input'
                 placeholder='الهوية الوطنية'
                 name="NationalId"
@@ -128,7 +154,9 @@ export default class Register extends Component {
               <label className="lf--label" for="Phone">
                 <AiOutlineMobile />
               </label>
-              <input id="Phone"
+              <input
+                required
+                id="Phone"
                 className='lf--input'
                 placeholder='رقم الجوال '
                 name="Phone"
@@ -140,7 +168,9 @@ export default class Register extends Component {
               <label className="lf--label" for="Job">
                 <CgWorkAlt />
               </label>
-              <input id="Job"
+              <input
+                required
+                id="Job"
                 className='lf--input'
                 placeholder='العمل الحالي '
                 name="Job"
@@ -152,7 +182,6 @@ export default class Register extends Component {
               <label className="lf--label" for="Gender">
                 <CgGenderMale />
                 <CgGenderFemale />
-
               </label>
               <select id="Gender"
                 className='lf--input'
@@ -171,6 +200,7 @@ export default class Register extends Component {
                   </svg>
                 </label>
                 <select id="Education"
+                  required
                   className='lf--input'
                   name="Education"
                   onChange={e => this.handleChange(e)}
@@ -186,7 +216,7 @@ export default class Register extends Component {
               </div>
               : ""}
             <input className='lf--submit' type='submit' value='تسجيل' onClick={e => this.handelSubmit(e)} />
-            <Link to={'Login'} className='lf--submit' type='submit'>
+            <Link to={'Login'} className='lf--submit'>
               العودة الى تسجيل الدخول
             </Link>
           </form>

@@ -11,15 +11,15 @@ export default class Teams extends Component {
         super(props)
         this.state = {
             Teams: [],
-            itemInPage: [],
+            currentTeam: [],
             toggle:false,
             teamId:null
         };
         this.onChangePage = this.onChangePage.bind(this);
     }
-    onChangePage(itemInPage) {
+    onChangePage(currentTeam) {
         // update state with new page of items
-        this.setState({ itemInPage: itemInPage });
+        this.setState({ currentTeam: currentTeam });
     }
 
     componentDidMount() {
@@ -46,7 +46,7 @@ export default class Teams extends Component {
         let allTeams = <h3> قريبا... </h3>
         // if condtion to check the array is greater than zero return and pass the data to ReceivedService components 
         if (this.state.Teams.length > 0) {
-            allTeams = this.state.itemInPage.map((item, index) => {
+            allTeams = this.state.currentTeam.map((item, index) => {
                 return (  
                     
         <div id={item._id}>
@@ -73,7 +73,7 @@ return(
                         <Pagination items={this.state.Teams} onChangePage={this.onChangePage} pageSize={12} className={ '"is-active"'}/>
                     </div>
                 </div>
-            </Cards.TeamContainer>: <CurrentTeam  tog={e=>this.toggleHandler(e)} data={this.state.itemInPage[this.state.teamId]} />}
+            </Cards.TeamContainer>: <CurrentTeam  tog={e=>this.toggleHandler(e)} data={this.state.currentTeam[this.state.teamId]} />}
     <Footer />
     </>
 )
