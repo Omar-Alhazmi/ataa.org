@@ -79,7 +79,7 @@ if(checkValidation === false){
         <div className="LoginContainer">
           <form className='login-form' onSubmit={e => this.handelSubmit(e)}>
             <div className="flex-row">
-              <label className="lf--label" for="Email">
+              <label className="lf--label" htmlFor="Email">
                 <AiOutlineMail />
               </label>
               <input id="Email"
@@ -92,7 +92,7 @@ if(checkValidation === false){
                 value={Email} />
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="password">
+              <label className="lf--label" htmlFor="password">
                 <CgLastpass />
               </label>
               <input
@@ -106,7 +106,7 @@ if(checkValidation === false){
                 value={password} />
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="Role">
+              <label className="lf--label" htmlFor="Role">
                 <CgUserList />
               </label>
               <select id="Role"
@@ -122,7 +122,7 @@ if(checkValidation === false){
               </select>
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="NationalId">
+              <label className="lf--label" htmlFor="NationalId">
 
                 <CgRename />
               </label>
@@ -137,7 +137,7 @@ if(checkValidation === false){
                 value={FullName} />
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="NationalId">
+              <label className="lf--label" htmlFor="NationalId">
                 <AiFillIdcard />
               </label>
               <input
@@ -151,7 +151,7 @@ if(checkValidation === false){
                 value={NationalId} />
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="Phone">
+              <label className="lf--label" htmlFor="Phone">
                 <AiOutlineMobile />
               </label>
               <input
@@ -165,7 +165,7 @@ if(checkValidation === false){
                 value={Phone} />
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="Job">
+              <label className="lf--label" htmlFor="Job">
                 <CgWorkAlt />
               </label>
               <input
@@ -179,7 +179,7 @@ if(checkValidation === false){
                 value={Job} />
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="Gender">
+              <label className="lf--label" htmlFor="Gender">
                 <CgGenderMale />
                 <CgGenderFemale />
               </label>
@@ -195,7 +195,7 @@ if(checkValidation === false){
             </div>
             {Role === "GeneralMember" ?
               <div className="flex-row">
-                <label className="lf--label" for="Education">
+                <label className="lf--label" htmlFor="Education">
                   <svg x="0px" y="0px" width="12px" height="13px">
                   </svg>
                 </label>
