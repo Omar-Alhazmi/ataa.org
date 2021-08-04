@@ -8,7 +8,7 @@ class PrivateRoute extends Component {
             currentUser: ""
         };
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         if(checkStorage() !== null && checkStorage() !== undefined){
         let jwt = getInfo().data.Role
         switch (jwt) {

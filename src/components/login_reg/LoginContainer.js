@@ -8,6 +8,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { createBrowserHistory } from 'history';
 import apiURL from '../api_config/ApiConfig';
+import { AiOutlineMail } from 'react-icons/ai';
+import { CgLastpass} from 'react-icons/cg';
 
 const history = createBrowserHistory();
 export default class LoginContainer extends Component {
@@ -87,9 +89,8 @@ export default class LoginContainer extends Component {
         <div className="LoginContainer">
           <form className='login-form' onSubmit={e => this.handelSubmit(e)}>
             <div className="flex-row">
-              <label className="lf--label" for="username">
-                <svg x="0px" y="0px" width="12px" height="13px">
-                </svg>
+            <label className="lf--label" htmlFor="Email">
+                <AiOutlineMail />
               </label>
               <input id="username"
                 required
@@ -101,9 +102,8 @@ export default class LoginContainer extends Component {
                 value={this.state.Email} />
             </div>
             <div className="flex-row">
-              <label className="lf--label" for="password">
-                <svg x="0px" y="0px" width="15px" height="5px">
-                </svg>
+            <label className="lf--label" htmlFor="password">
+                <CgLastpass />
               </label>
               <input id="password"
                 className='lf--input'
