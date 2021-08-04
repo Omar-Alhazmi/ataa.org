@@ -23,7 +23,7 @@ export default class Teams extends Component {
     }
 
     componentDidMount() {
-        // Mack API call 
+        //API call 
         getAllTeams(this.props.Teams)
             .then((response) => {
                 this.setState({ Teams: response.data,
@@ -41,16 +41,12 @@ export default class Teams extends Component {
         this.setState({teamId:teamId})
       }
     render() {
-
-
         let allTeams = <h3> قريبا... </h3>
-        // if condtion to check the array is greater than zero return and pass the data to ReceivedService components 
         if (this.state.Teams.length > 0) {
             allTeams = this.state.currentTeam.map((item, index) => {
-                return (  
-                    
-        <div id={item._id}>
-            <Cards.SingleCard key={index}  onClick={()=>this.teamHandler(index)}>
+                return (                  
+        <div id={item._id} key={index}>
+            <Cards.SingleCard   onClick={()=>this.teamHandler(index)}>
                 <Cards.CardsIcon src={apiURL+item.Logo} />
                 <Cards.CardsH2>{item.data.TeamName}</Cards.CardsH2>
                 <Cards.CardsP>{item.Content}</Cards.CardsP>

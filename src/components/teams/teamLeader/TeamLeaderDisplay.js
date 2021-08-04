@@ -4,7 +4,7 @@ import ApiConfig from '../../api_config/ApiConfig';
 
 export default class TeamLeaderDisplay extends Component {
     render() {
-        const {Leader} =this.props.data
+        const {Leader,Members} =this.props.data
         const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision,Logo} =this.props.data.teamData
         return (
             <div>
@@ -55,62 +55,31 @@ export default class TeamLeaderDisplay extends Component {
                                 </p>
                             </div>
                         </div>
-                    {/* </div> */}
                     <hr className="H_line" />
                     <h2 className="heading_2">
                         اعضاء الفريق
                     </h2>
-                    <div className="crew-members">
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
 
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
-                        <div className="member">
-                            قائد الفريق
-                            <p className="discretion">
-                                {Leader}
-                            </p>
-                        </div>
+                    <div className="crew-members">
+                    <div className="member">
+                        قائد الفريق
+                        <p className="discretion">
+                            {Leader.FullName}
+                        </p>
                     </div>
+                    {
+                        Members.map((item, index) => {
+                            return (
+                                <div className="member" index={index}>
+                                    عضو الفريق
+                                    <p className="discretion">
+                                        {item.FullName}
+                                    </p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
 
                 </div>
                 :""}
