@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
 import { AiFillEdit } from "react-icons/ai";
 import ApiConfig from '../../api_config/ApiConfig';
-
-export default class TeamLeaderDisplay extends Component {
+export default class TeamLeaderDisplay extends Component {              
     render() {
         const {Leader,Members} =this.props.data
         const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision,Logo} =this.props.data.teamData
+        let allMember = '...'
+            if (Members.length > 0) {
+         allMember =  Members.map((item, index) => {
+                                 return (
+                                     <div className="member" key={index}>
+                                         عضو الفريق
+                                         <p className="discretion">
+                                             {item.FullName}
+                                         </p>
+                                     </div>
+                                   
+                                 )
+                             })
+                            }
         return (
             <div>
                 {CreateAt !== undefined ?
@@ -64,21 +77,10 @@ export default class TeamLeaderDisplay extends Component {
                     <div className="member">
                         قائد الفريق
                         <p className="discretion">
-                            {Leader.FullName}
+                            {Leader}
                         </p>
                     </div>
-                    {
-                        Members.map((item, index) => {
-                            return (
-                                <div className="member" index={index}>
-                                    عضو الفريق
-                                    <p className="discretion">
-                                        {item.FullName}
-                                    </p>
-                                </div>
-                            )
-                        })
-                    }
+                        {allMember}
                 </div>
 
                 </div>
