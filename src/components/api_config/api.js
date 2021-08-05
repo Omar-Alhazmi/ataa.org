@@ -30,7 +30,7 @@ export const UserRegistration = req => {
     }
   })
 }
-//========================= =============================\\
+//========================= Team Registration =============================\\
 export const TeamRegistration = (req, id, Logo) => {
   const formData = new FormData();
   Object.entries(req).forEach(([key, value]) => {
@@ -46,7 +46,22 @@ export const TeamRegistration = (req, id, Logo) => {
     )
     .catch(err => console.log(err));
 };
-//========================= =============================\\
+//========================= Add New Post =============================\\
+export const NewPost = (req, id, image) => {
+  const formData = new FormData();
+  Object.entries(req).forEach(([key, value]) => {
+    formData.append(key, value)
+  })
+  formData.append("img", image);
+  return axios.post(`${apiURL}api/post/${id}`, formData, config)
+    .then(res => {
+      console.log(res);
+      window.location.reload(false)
+    }
+    )
+    .catch(err => console.log(err));
+};
+//========================= Update Team Data =============================\\
 export const UpdateTeam = (req, id, Logo) => {
   const formData = new FormData();
   Object.entries(req).forEach(([key, value]) => {
@@ -59,7 +74,7 @@ export const UpdateTeam = (req, id, Logo) => {
     )
     .catch(err => console.log(err));
 };
-//=====================  =================
+//=====================  User Register To Team =================
 export const UserRegToTeam = (userId, teamId) => {
   return axios({
     method: 'patch',
