@@ -15,6 +15,7 @@ export default class TeamLeader extends Component {
             Leader: "",
             Logo: "",
             teamId: "",
+            Members:[],
             teamData: {
                 Logo: "",
                 NumberOfII: 0,
@@ -43,6 +44,7 @@ export default class TeamLeader extends Component {
                     this.setState({  
                         Leader: res.data.Leader.FullName,
                         teamId: res.data._id,
+                        Members:res.data.Members,
                         teamData: {
                             CreateAt: CreateAt,
                             TeamName: TeamName,
