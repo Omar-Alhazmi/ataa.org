@@ -1,5 +1,26 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 /*Just the background stuff*/
+
+.nwsModalContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+      font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 1.5em;
+  z-index: 99;
+  height: 100%;
+  }
+  .news-lf--input {
+    flex: 1;
+    padding: 1em;
+    border: 0;
+    color: #8f8f8f;
+    font-size: 1rem;
+    }
 span.s1 {
   position: absolute;
   top: 0;

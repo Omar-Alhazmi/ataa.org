@@ -36,6 +36,8 @@ const Description = styled.p`
 const StyledPhoto = styled.img`
   width: 100%;
   height: 100%;
+  max-width: 500px;
+  max-height: 450px;
   object-fit: cover;
   border: ${(props) => `1px solid ${props.theme.border}`};
 `

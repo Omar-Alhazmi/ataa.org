@@ -56,7 +56,6 @@ export default class currentTeam extends Component {
                 })
         }
     }
-    
     render() {
         const { Leader, Members, Logo } = this.props.data
         const { CreateAt, GeneralGoal, Message, NumberOfII, SpecificGoal, TeamName, Vision } = this.props.data.data

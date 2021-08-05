@@ -6,6 +6,7 @@ import Footer from '../footer/Footer';
 import CurrentTeam from './CurrentTeam';
 import Pagination from './Pagination';
 import '../styles/footer.css';
+
 export default class Teams extends Component {
     constructor(props) {
         super(props)
@@ -41,7 +42,7 @@ export default class Teams extends Component {
         this.setState({teamId:teamId})
       }
     render() {
-        let allTeams = <h3> قريبا... </h3>
+        let allTeams = <h3>.....</h3>
         if (this.state.Teams.length > 0) {
             allTeams = this.state.currentTeam.map((item, index) => {
                 return (                  
