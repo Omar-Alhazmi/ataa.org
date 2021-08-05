@@ -53,6 +53,7 @@ export default class LoginContainer extends Component {
         //   return Swal.fire({ icon: 'warning', title: "الحساب مسجل دخول  من قبل ",showConfirmButton: false,timer: 1500 })
         // }
         localStorage.setItem("currentUser", res.data.token);
+        localStorage.setItem('CountTime', new Date());
         let jwt = getInfo().data.Role;
         if (jwt === undefined) {
           history.push("/");

@@ -4,7 +4,7 @@ export const checkStorage = () => {
   return localStorage.getItem('currentUser');
 };
 export const getInfo = () => {
-  return jwt_decode(localStorage.getItem('currentUser'));
+  return jwt_decode(localStorage.getItem('currentUser'))
 };
 export const getId = () => {
   if (checkStorage()) {
@@ -12,7 +12,7 @@ export const getId = () => {
   }
 }
 export const newTeam = () => {
-  
+
   if (localStorage.getItem('leadAt')) {
     return true
   }
@@ -23,6 +23,15 @@ export const newTeam = () => {
 export const leadTeam = () => {
   if (checkStorage()) {
     if (getInfo().data.LeaderAt !== undefined) {
+      return true
+    } else {
+      return false
+    }
+  }
+}
+export const authToPost = () => {
+  if (checkStorage()) {
+    if (getInfo().data.LeaderAt !== undefined || getInfo().data.Role === "Superintendent") {
       return true
     } else {
       return false
@@ -53,3 +62,10 @@ export const validFileType = (file) => {
   ];
   return fileTypes.includes(file.type);
 }
+
+// start the time out
+const EXPIRE_TIME = 1000*60*60*5;
+setTimeout(function() {
+  localStorage.clear();
+  window.location.reload(false);
+}, EXPIRE_TIME); // after 5 hour it will delete the data
