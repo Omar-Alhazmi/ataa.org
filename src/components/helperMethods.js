@@ -62,7 +62,12 @@ export const validFileType = (file) => {
   ];
   return fileTypes.includes(file.type);
 }
-
+export const validFileTypePDF = (file) => {
+  const fileTypes = [
+    "application/pdf",
+  ];
+  return fileTypes.includes(file.type);
+}
 // start the time out
 const EXPIRE_TIME = 1000*60*60*5;
 setTimeout(function() {

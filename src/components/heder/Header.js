@@ -118,7 +118,7 @@ if (!haveTeam()) {
                   </MainHeader.NavItem>
                   : ""}
                 <MainHeader.NavItem>
-                  <MainHeader.NavLinks to="/PrivacyPolicy" smooth={true.toString()}
+                  <MainHeader.NavLinks to="/Polices" smooth={true.toString()}
                     duration={500}
                     spy={true.toString()}
                     exact={true.toString()}
@@ -142,9 +142,9 @@ if (!haveTeam()) {
           <Route exact path='/Teams'>
             <Teams />
           </Route>
-          {/* <Route exact path='/Polices'>
+          <Route exact path='/Polices'>
             <Polices />
-          </Route> */}
+          </Route>
           <Route exact path='/Login'>
             <Login />
           </Route>

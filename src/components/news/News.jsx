@@ -17,7 +17,7 @@ export default class News extends Component {
       toggle: false,
       FormData: {
         Title: "",
-        Content: ""
+        Content: "",
       }
     };
   }

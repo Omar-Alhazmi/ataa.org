@@ -29,7 +29,10 @@ span.s1 {
   text-transform: uppercase;
   color: #3C4447;
 }
-
+.PolicesList{
+  margin-right: 3%;
+  padding: 2%;
+}
 span.s2 {
   font-weight: 800;
   position: absolute;

@@ -61,6 +61,20 @@ export const NewPost = (req, id, image) => {
     )
     .catch(err => console.log(err));
 };
+//========================= Add New Post Police =============================\\
+export const NewPolice = (Title, id, file) => {
+  console.log(Title);
+  const formData = new FormData();
+  formData.append("Title", Title);
+  formData.append("file", file);
+  return axios.post(`${apiURL}api/upload/new/Police/${id}`, formData, config)
+    .then(res => {
+      // window.location.reload(false)
+    }
+    )
+    .catch(err => console.log(err));
+};
+
 //========================= Update Team Data =============================\\
 export const UpdateTeam = (req, id, Logo) => {
   const formData = new FormData();
@@ -95,4 +109,8 @@ export const getAllTeams = () => {
 export const getTeamLeader = (id) => {
   return axios.get(`${apiURL}api/get/Team/ByUser/${id}`, config);
 }
+export const getAllPolices = () => {
+  return axios.get(`${apiURL}api/get/All/Polices`);
+}
+
 
