@@ -69,7 +69,17 @@ span.s2 {
   box-shadow: 10px 10px 60px 0px rgba(0, 0, 0, 0.75);
   overflow: hidden;
 }
-
+.NewsHomeDisplay{
+  color: aquamarine;
+  font: 1em sans-serif;
+}
+.P-display{
+  text-decoration: none;
+}
+.P-display>p{
+  cursor: pointer;
+  color: #ba8e34;
+}
 /*object-fit: cover;*/
 /*object-position: center;*/
 img.left {
