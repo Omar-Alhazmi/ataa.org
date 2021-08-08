@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/ataa_platform_front_end/static/css/main.5aa3ea08.chunk.css",
+    "main.js": "/ataa_platform_front_end/static/js/main.92de9e66.chunk.js",
+    "main.js.map": "/ataa_platform_front_end/static/js/main.92de9e66.chunk.js.map",
+    "runtime-main.js": "/ataa_platform_front_end/static/js/runtime-main.dd8cc1ee.js",
+    "runtime-main.js.map": "/ataa_platform_front_end/static/js/runtime-main.dd8cc1ee.js.map",
+    "static/css/2.d3d9b9c9.chunk.css": "/ataa_platform_front_end/static/css/2.d3d9b9c9.chunk.css",
+    "static/js/2.a2901d5a.chunk.js": "/ataa_platform_front_end/static/js/2.a2901d5a.chunk.js",
+    "static/js/2.a2901d5a.chunk.js.map": "/ataa_platform_front_end/static/js/2.a2901d5a.chunk.js.map",
+    "static/js/3.71d79dca.chunk.js": "/ataa_platform_front_end/static/js/3.71d79dca.chunk.js",
+    "static/js/3.71d79dca.chunk.js.map": "/ataa_platform_front_end/static/js/3.71d79dca.chunk.js.map",
+    "index.html": "/ataa_platform_front_end/index.html",
+    "static/css/2.d3d9b9c9.chunk.css.map": "/ataa_platform_front_end/static/css/2.d3d9b9c9.chunk.css.map",
+    "static/css/main.5aa3ea08.chunk.css.map": "/ataa_platform_front_end/static/css/main.5aa3ea08.chunk.css.map",
+    "static/js/2.a2901d5a.chunk.js.LICENSE.txt": "/ataa_platform_front_end/static/js/2.a2901d5a.chunk.js.LICENSE.txt",
+    "static/media/logo.b835763f.ico": "/ataa_platform_front_end/static/media/logo.b835763f.ico",
+    "static/media/TeamLeaderLayout.css": "/ataa_platform_front_end/static/media/pt_bg.aaaf8e35.jpeg",
+    "static/media/slick-theme.css": "/ataa_platform_front_end/static/media/slick.c94f7671.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dd8cc1ee.js",
+    "static/css/2.d3d9b9c9.chunk.css",
+    "static/js/2.a2901d5a.chunk.js",
+    "static/css/main.5aa3ea08.chunk.css",
+    "static/js/main.92de9e66.chunk.js"
+  ]
+}
