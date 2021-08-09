@@ -30,36 +30,37 @@ export default class Register extends Component {
     });
   }
   // Function to set data in ServiceDescription state
-  addUser = User => {
+  addUser =  User => {
     // Make an api call request to add a new user 
     let checkValidation = true
     // let isGUser = false
-    const stateWithoutEducation = (({Education, ...o }) => o)(User)
+    const stateWithoutEducation = (({ Education, ...o }) => o)(User)
     Object.entries(stateWithoutEducation).forEach(([key, value]) => {
-      if(value === ""){
+      if (value === "") {
         return checkValidation = false;
       }
     })
-if(checkValidation === false){
+    if (checkValidation === false) {
       Swal.fire({ icon: 'error', title: " الرجاء التأكد من ادخال  جميع البيانات" });
     }
-     else{
-      UserRegistration(User)
-        .then(response => {
+    else {
+       UserRegistration(User)
+        .then( response  => {
           console.log(response);
-
-          if (response.data.success === false && response.data.message === "dataFill" ) {
-            Swal.fire({ icon: 'error', title: "تأكد من ملء جميع البيانات" });
-          }
-          if (response.data.success === false && response.data.message === "Email already exists." ) {
+           let errMessage =  response.data.message
+           console.log(errMessage);
+           if (response.data.success ===  false && errMessage === "Email") {
             Swal.fire({ icon: 'error', title: "البريد الالكتروني مسجل من قبل " });
           }
-          if (response.data.success === true) {
+          else if (response.data.success === true) {
             Swal.fire({ icon: 'success', title: "تم إرسال رسالة التأكيد الى  البريد الالكتروني " });
+          }
+          else {
+            Swal.fire({ icon: 'error', title: "الرجاء التأكد  من ادخال البيانات بشكل صحيح" });
           }
         })
         .catch(error => {
-          Swal.fire({ icon: 'error', title: `حدث خطا`});
+          Swal.fire({ icon: 'error', title: `حدث خطا` });
         });
     };
   }
