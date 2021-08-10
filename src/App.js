@@ -12,7 +12,7 @@ function App() {
   }
 return (
     <>
-       <HashRouter>
+       <HashRouter basename="/ataa_platform_front_end">
        {/* <Switch> */}
        <Sidebar isOpen={isOpen} toggle={toggle}/>
        <NavBar toggle={toggle}/>
