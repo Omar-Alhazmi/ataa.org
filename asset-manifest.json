@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ataa_platform_front_end/static/css/main.5aa3ea08.chunk.css",
-    "main.js": "/ataa_platform_front_end/static/js/main.39248adc.chunk.js",
-    "main.js.map": "/ataa_platform_front_end/static/js/main.39248adc.chunk.js.map",
+    "main.js": "/ataa_platform_front_end/static/js/main.a1cf87ae.chunk.js",
+    "main.js.map": "/ataa_platform_front_end/static/js/main.a1cf87ae.chunk.js.map",
     "runtime-main.js": "/ataa_platform_front_end/static/js/runtime-main.dd8cc1ee.js",
     "runtime-main.js.map": "/ataa_platform_front_end/static/js/runtime-main.dd8cc1ee.js.map",
     "static/css/2.d3d9b9c9.chunk.css": "/ataa_platform_front_end/static/css/2.d3d9b9c9.chunk.css",
@@ -23,6 +23,6 @@
     "static/css/2.d3d9b9c9.chunk.css",
     "static/js/2.a2901d5a.chunk.js",
     "static/css/main.5aa3ea08.chunk.css",
-    "static/js/main.39248adc.chunk.js"
+    "static/js/main.a1cf87ae.chunk.js"
   ]
 }
