@@ -16,14 +16,14 @@ const Sidebar = ({ isOpen, toggle }) => {
          </SidebarElements.Icon>
          <SidebarElements.SidebarWrapper>
             <SidebarElements.SidebarMenu>
-               <SidebarElements.SidebarLink to="about" onClick={toggle} >عن الجمعية</SidebarElements.SidebarLink>
-               <SidebarElements.SidebarLink to="News" onClick={toggle}>الاخبار</SidebarElements.SidebarLink>
-               <SidebarElements.SidebarLink to="Teams" onClick={toggle}>الفرق التطوعية</SidebarElements.SidebarLink>
-               <SidebarElements.SidebarLink to="PrivacyPolicy" onClick={toggle}>السياسات والحوكمة</SidebarElements.SidebarLink>
-               <SidebarElements.SidebarLink to="TeamLeader" onClick={toggle}>{handleDisplay}</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="/About" onClick={toggle} >عن الجمعية</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="/News" onClick={toggle}>الاخبار</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="/Teams" onClick={toggle}>الفرق التطوعية</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="/Polices" onClick={toggle}>السياسات والحوكمة</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="/TeamLeader" onClick={toggle}>{handleDisplay}</SidebarElements.SidebarLink>
             </SidebarElements.SidebarMenu>
             <SidebarElements.SideBtnWrap>
-               <SidebarElements.SidebarRoute to="/signin">تسجيل الدخول</SidebarElements.SidebarRoute>
+               <SidebarElements.SidebarRoute to="/Login">تسجيل الدخول</SidebarElements.SidebarRoute>
             </SidebarElements.SideBtnWrap>
          </SidebarElements.SidebarWrapper>
       </SidebarElements.SidebarContainer>
