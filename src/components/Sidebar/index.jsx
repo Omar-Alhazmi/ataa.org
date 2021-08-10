@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { SidebarContainer, Icon, CloseIcon, SidebarWrapper, SidebarMenu, SidebarLink, SideBtnWrap, SidebarRoute } from './SidebarElements';
-import { leadTeam,newTeam } from '../helperMethods';
+import * as SidebarElements from './SidebarElements';
+import { leadTeam, newTeam } from '../helperMethods';
 
 const Sidebar = ({ isOpen, toggle }) => {
    const [handleDisplay, setTitle] = useState("");
@@ -10,23 +10,23 @@ const Sidebar = ({ isOpen, toggle }) => {
       } else { setTitle(" اعدادات الفريق") }
    }, []);
    return (
-      <SidebarContainer isOpen={isOpen} onClick={toggle}>
-         <Icon onClick={toggle}>
-            <CloseIcon />
-         </Icon>
-         <SidebarWrapper>
-            <SidebarMenu>
-               <SidebarLink to="about" onClick={toggle} >عن الجمعية</SidebarLink>
-               <SidebarLink to="News" onClick={toggle}>الاخبار</SidebarLink>
-               <SidebarLink to="Teams" onClick={toggle}>الفرق التطوعية</SidebarLink>
-               <SidebarLink to="PrivacyPolicy" onClick={toggle}>السياسات والحوكمة</SidebarLink>
-               <SidebarLink to="TeamLeader" onClick={toggle}>{handleDisplay}</SidebarLink>
-            </SidebarMenu>
-            <SideBtnWrap>
-               <SidebarRoute to="/signin">تسجيل الدخول</SidebarRoute>
-            </SideBtnWrap>
-         </SidebarWrapper>
-      </SidebarContainer>
+      <SidebarElements.SidebarContainer isOpen={isOpen} onClick={toggle}>
+         <SidebarElements.Icon onClick={toggle}>
+            <SidebarElements.CloseIcon />
+         </SidebarElements.Icon>
+         <SidebarElements.SidebarWrapper>
+            <SidebarElements.SidebarMenu>
+               <SidebarElements.SidebarLink to="about" onClick={toggle} >عن الجمعية</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="News" onClick={toggle}>الاخبار</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="Teams" onClick={toggle}>الفرق التطوعية</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="PrivacyPolicy" onClick={toggle}>السياسات والحوكمة</SidebarElements.SidebarLink>
+               <SidebarElements.SidebarLink to="TeamLeader" onClick={toggle}>{handleDisplay}</SidebarElements.SidebarLink>
+            </SidebarElements.SidebarMenu>
+            <SidebarElements.SideBtnWrap>
+               <SidebarElements.SidebarRoute to="/signin">تسجيل الدخول</SidebarElements.SidebarRoute>
+            </SidebarElements.SideBtnWrap>
+         </SidebarElements.SidebarWrapper>
+      </SidebarElements.SidebarContainer>
    )
 }
 export default Sidebar

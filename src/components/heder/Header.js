@@ -49,7 +49,7 @@ if (!haveTeam()) {
 }}, []);
   return (
     <>
-      <Router>
+      <Router basename="/ataa_platform_front_end">
         <IconContext.Provider value={{ color: '#fff' }}>
           <MainHeader.NavLogReg>
             <MainHeader.NavLogRegLink
