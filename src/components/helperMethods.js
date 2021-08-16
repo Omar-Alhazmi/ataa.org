@@ -59,7 +59,9 @@ export const validFileType = (file) => {
     "image/svg+xml",
     "image/tiff",
     "image/webp",
-    "image/x-icon"
+    "image/x-icon",
+    "image/icon",
+    "image/ico"
   ];
   return fileTypes.includes(file.type);
 }
