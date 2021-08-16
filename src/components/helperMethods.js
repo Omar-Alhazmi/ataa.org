@@ -36,6 +36,7 @@ export const authToPost = () => {
     } else {
       return false
     }
+
   }
 }
 export const haveTeam = () => {

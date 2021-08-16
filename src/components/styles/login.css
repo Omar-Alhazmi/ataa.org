@@ -105,3 +105,11 @@ color: #8f8f8f;
 ::placeholder {
 color: #8f8f8f;
 }
+@media screen and (min-width: 277px) {
+  .login-form {
+    padding: 1em;
+}
+.lf--input {
+font-size: 0.9rem;
+}
+}

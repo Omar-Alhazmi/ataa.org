@@ -69,14 +69,13 @@
 	background-color: #eeeeee;
 }
 
-.lol {
+.homeLayout {
 	height: fit-content;
 	display: grid;
 	margin-top: 30%;
 	background-color: #e0e0e0;
 	font-size: 20px;
 	font-family: 'Amiri', serif;
-
 }
 
 .sliderMainContainer {
@@ -107,3 +106,8 @@
 		width: 307px;
 	}
 }
+
+@media screen and (max-width: 277px) {
+.sliderContainer {
+    width: 221px;
+}}

@@ -44,6 +44,7 @@ export default class LoginContainer extends Component {
         password: this.state.password
       })
       .then(res => {
+        console.log(res.data);
         try{
         if (res.data.success === false) {
           return Swal.fire({ icon: 'error', title: res.data.message })
@@ -62,7 +63,7 @@ export default class LoginContainer extends Component {
         else if (jwt === "TeamLeader") {
           console.log(jwt);
           Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
-          history.push('/#/TeamLeader')
+          history.push('/ataa.org/#/TeamLeader')
         } else if (jwt === "TeamCoLeader") {
           console.log(jwt);
           history.push("/");

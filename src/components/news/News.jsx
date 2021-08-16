@@ -141,6 +141,7 @@ export default class News extends Component {
         </StyledRoot>
       )
     }
+    console.log(authToPost());
     const { image, toggle ,FormData} = this.state
     return (
       <div>
