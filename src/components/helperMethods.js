@@ -72,8 +72,8 @@ export const validFileTypePDF = (file) => {
   return fileTypes.includes(file.type);
 }
 // start the time out
-const EXPIRE_TIME = 1000*60*60*5;
-setTimeout(function() {
+const EXPIRE_TIME = 1000 * 60 * 60 * 5;
+setTimeout(function () {
   localStorage.clear();
   window.location.reload(false);
 }, EXPIRE_TIME); // after 5 hour it will delete the data

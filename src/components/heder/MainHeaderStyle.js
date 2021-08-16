@@ -129,3 +129,19 @@ color: #3EC1B9;
   color: #B38533;
 }
 `
+export const Logout = styled.button`
+border-radius: 50px;
+white-space: nowrap;
+padding: 10px 22px;
+text-align:left;
+font-size: 16px;
+outline: none;
+border: none;
+cursor: pointer;
+/* transition: all 0.2s ease-in-out; */
+text-decoration: none;
+color: #3EC1B9;
+&:hover{
+  color: #B38533;
+}
+`

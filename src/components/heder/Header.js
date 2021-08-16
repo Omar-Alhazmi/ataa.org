@@ -47,18 +47,34 @@ useEffect(()=>{
 if (!haveTeam()) {
   setMemberNave("  التسجيل في فريق  ")
 }}, []);
-  return (
+const logout=(e)=>{ 
+  localStorage.clear();
+  window.location.reload(false);
+  }
+return (
     <>
       <Router >
         <IconContext.Provider value={{ color: '#fff' }}>
-          <MainHeader.NavLogReg>
-            <MainHeader.NavLogRegLink
+          {checkStorage() !== null ?
+                    <MainHeader.NavLogReg>
+         <MainHeader.Logout
+            duration={500}
+            spy={true.toString()}
+            exact={true.toString()}
+            onClick={e =>logout(e)}>
+              تسجيل الخروج
+              </MainHeader.Logout>
+              </MainHeader.NavLogReg>
+              : 
+              <MainHeader.NavLogReg>
+               <MainHeader.NavLogRegLink
               duration={500}
               spy={true.toString()}
               exact={true.toString()}
               to={'/Login'}>تسجيل الدخول</MainHeader.NavLogRegLink>|
             <MainHeader.NavLogRegLink to="/Register">تسجيل جديد</MainHeader.NavLogRegLink>
-          </MainHeader.NavLogReg>
+            </MainHeader.NavLogReg>
+          }   
           <MainHeader.Nav scrollNav={scrollNav}>
             <MainHeader.NavContainer >
               <MainHeader.NavLogo to='/' onClick={toggleHandler}><MainHeader.Image scrollNav={scrollNav} duration={500} src={logo} alt="" /> </MainHeader.NavLogo>
