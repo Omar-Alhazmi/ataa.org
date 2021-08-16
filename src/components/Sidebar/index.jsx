@@ -27,6 +27,7 @@ const Sidebar = ({ isOpen, toggle }) => {
                <SidebarElements.SidebarLink to="/Polices" onClick={toggle}>السياسات والحوكمة</SidebarElements.SidebarLink>
                <PrivateRoute>
                   <SidebarElements.SidebarLink to="/TeamLeader" onClick={toggle}>{handleDisplay}</SidebarElements.SidebarLink>
+                  <SidebarElements.SidebarLink to="/TeamLeader" onClick={toggle}>{handleDisplay}</SidebarElements.SidebarLink>
                </PrivateRoute>
             </SidebarElements.SidebarMenu>
             <SidebarElements.SideBtnWrap>
