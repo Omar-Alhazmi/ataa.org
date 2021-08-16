@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/ataa.org/static/css/main.fa8d1e90.chunk.css",
-    "main.js": "/ataa.org/static/js/main.83ae72eb.chunk.js",
-    "main.js.map": "/ataa.org/static/js/main.83ae72eb.chunk.js.map",
+    "main.js": "/ataa.org/static/js/main.39d26b3e.chunk.js",
+    "main.js.map": "/ataa.org/static/js/main.39d26b3e.chunk.js.map",
     "runtime-main.js": "/ataa.org/static/js/runtime-main.2b1a8ae1.js",
     "runtime-main.js.map": "/ataa.org/static/js/runtime-main.2b1a8ae1.js.map",
     "static/css/2.f1ac1ab1.chunk.css": "/ataa.org/static/css/2.f1ac1ab1.chunk.css",
@@ -23,6 +23,6 @@
     "static/css/2.f1ac1ab1.chunk.css",
     "static/js/2.b2c9da4d.chunk.js",
     "static/css/main.fa8d1e90.chunk.css",
-    "static/js/main.83ae72eb.chunk.js"
+    "static/js/main.39d26b3e.chunk.js"
   ]
 }
