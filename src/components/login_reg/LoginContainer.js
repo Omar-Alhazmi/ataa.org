@@ -57,7 +57,7 @@ export default class LoginContainer extends Component {
         localStorage.setItem('CountTime', new Date());
         let jwt = getInfo().data.Role;
         if (jwt === undefined) {
-          history.push("/");
+          history.push("/ataa.org/#/");
           Swal.fire(` ${jwt}`, "", 'error');
         }
         else if (jwt === "TeamLeader") {
@@ -66,13 +66,13 @@ export default class LoginContainer extends Component {
           history.push('/ataa.org/#/TeamLeader')
         } else if (jwt === "TeamCoLeader") {
           console.log(jwt);
-          history.push("/");
+          history.push("/ataa.org/#/");
           Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
         } else if (jwt === "TeamMember") {
-          history.push("/");
+          history.push("/ataa.org/#/");
           Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
         } else if (jwt === "GeneralMember") {
-          history.push("/");
+          history.push("/ataa.org/#/");
           Swal.fire({ icon: 'success', title: ` مرحبا  ${getInfo().data.FullName} `,showConfirmButton: false,timer: 1500 });
         } else {
           Swal.fire(` اسم المستخدم او الرقم السري غير صحيح`, "", 'error');
