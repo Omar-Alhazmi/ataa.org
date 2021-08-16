@@ -12,7 +12,7 @@ function App() {
   }
 return (
     <>
-       <HashRouter basename="/ataa.org/">
+       <HashRouter>
        {/* <Switch> */}
        <Sidebar isOpen={isOpen} toggle={toggle}/>
        <NavBar toggle={toggle}/>
