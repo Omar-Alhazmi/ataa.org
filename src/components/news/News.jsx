@@ -4,7 +4,7 @@ import Card from './NewsStyled'
 import { getAllNews, NewPost } from '../api_config/api'
 import apiURL from '../api_config/ApiConfig';
 import Footer from '../footer/Footer';
-import { authToPost, getId ,validFileType} from '../helperMethods';
+import { authToPost, getId, validFileType } from '../helperMethods';
 import NewsForm from './NewsForm';
 import Swal from "sweetalert2";
 
@@ -109,17 +109,11 @@ export default class News extends Component {
   margin: auto;
  
 `
-    const date = new Date().toLocaleDateString()
     const news = this.state.News
     let allNews = (
       <StyledRoot>
         <StyledContainer>
-
-          <Card
-            title={"...."}
-            date={date}
-            description={"...."}
-          />
+          <div class="spinner">Loading...</div>
         </StyledContainer>
       </StyledRoot>
     )
@@ -142,15 +136,15 @@ export default class News extends Component {
       )
     }
     console.log(authToPost());
-    const { image, toggle ,FormData} = this.state
+    const { image, toggle, FormData } = this.state
     return (
       <div>
         {authToPost() === true ?
           <button className="button" onClick={e => this.toggleHandler(e)}> انشاء منشور جديد</button>
           : ""}
         {toggle === true ?
-          <NewsForm image={image} data={FormData} hide={e=>this.toggleHandler(e)} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
-          : ""}     
+          <NewsForm image={image} data={FormData} hide={e => this.toggleHandler(e)} onFileChange={e => this.handleFileChange(e)} onNameChange={e => this.handleChange(e)} onFormSubmit={e => this.handelSubmit(e)} />
+          : ""}
         {allNews}
         <Footer />
       </div>

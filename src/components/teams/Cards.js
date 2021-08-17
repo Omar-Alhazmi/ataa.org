@@ -2,35 +2,18 @@ import styled from 'styled-components'
 
 export const CardsContainer = styled.div`
 
-/* height: 860px; */
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-background: ${({lightBg}) => (lightBg ? '#f9f9f9' : '#112d4e')};
-
-@media screen and (max-width: 760px) {
-    /* height: calc(226vh + 65px); */
-    /* height: 1100px; */
-}
-@media screen and (max-width: 480px) {
-    /* height: calc(226vh + 65px); */
-    /* height: 1300px; */
-}
+background: #8391a4;
 `;
 export const TeamContainer = styled.div`
-  /* height:  1207px; */
   height:  fit-content;
   margin-top: 10px;
   padding: 10px;
   display:grid;
-  background-color: #112d4e;
-  
-  /* @media screen and (max-width: 760px){
-    height:  fit-content;
-    margin-top: 10px;
-    padding-top: 10x; 
-  } */
+  background: #8391a4;
 `
 export const CardsWrapper = styled.div `
 max-width: 1000px;

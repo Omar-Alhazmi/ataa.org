@@ -73,7 +73,7 @@
 	height: fit-content;
 	display: grid;
 	margin-top: 30%;
-	background-color: #e0e0e0;
+    background: #8391a4;
 	font-size: 20px;
 	font-family: 'Amiri', serif;
 }
@@ -95,7 +95,9 @@
 	color: #79ceff;
 	background-color: #eeeeee;
 }
-
+svg.FaBarsIcon{
+	color: #607d8b !important;;
+}
 @media screen and (max-width: 768px) {
 	hr {
 		width: 100%;

@@ -94,7 +94,7 @@ export default class Polices extends Component {
       };
     render() {
         const { file, toggle ,Title,Polices} = this.state
-        let allPolices ="...."
+        let allPolices = <div class="spinner">Loading...</div>
         if (Polices.length > 0) {
              allPolices = (
                 <ol className="PolicesList">

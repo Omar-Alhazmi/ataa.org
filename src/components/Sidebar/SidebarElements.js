@@ -17,7 +17,7 @@ opacity: ${({ isOpen }) => (isOpen ? '100%' : '0')};
 top:${({ isOpen }) => (isOpen ? '0' : '-100%')};`;
 
 export const CloseIcon = styled(FaTimes)`
-color:#fff;`;
+color: #607d8b;`;
 
 export const SidebarMenu = styled.ul`
 display: grid;

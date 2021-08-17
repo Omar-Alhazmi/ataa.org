@@ -30,6 +30,9 @@ z-index: 10;
 
 @media screen and (max-width:960px){
      transition: 0.8s all ease;
+     display: grid;
+    justify-content: center;
+    margin: 17px 0;
 }`;
 export const NavContainer = styled.div`
 display: flex;
@@ -52,26 +55,25 @@ font-weight: bold;
 text-decoration: none;
 `;
 export const Image = styled.img`
-
     width: ${({scrollNav}) => (scrollNav ? `100px` : `227px`)};
-
     @media screen and (max-width:960px){
         width: 130px;
+        display: grid;
+    justify-content: center;
         }
     `
 
 export const ResponsiveIcon = styled.div`
 display:none;
 @media screen and (max-width: 768px){
-  background-color: #c99f34;
-    display: block;
+    display: grid;
     position: absolute;
+    color: #607d8b;
     top: 0;
     right: 0;
     transform: translate(-100%,60%); 
     font-size: 1.8rem;
     cursor: pointer;
-    color:#B38533;
 }`;
 
 export const NavMenu = styled.ul`

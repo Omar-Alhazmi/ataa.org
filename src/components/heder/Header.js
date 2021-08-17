@@ -79,7 +79,7 @@ return (
             <MainHeader.NavContainer >
               <MainHeader.NavLogo to='/' onClick={toggleHandler}><MainHeader.Image scrollNav={scrollNav} duration={500} src={logo} alt="" /> </MainHeader.NavLogo>
               <MainHeader.ResponsiveIcon onClick={toggle}>
-                <FaBars />
+                <FaBars className="FaBarsIcon" />
               </MainHeader.ResponsiveIcon>
               <MainHeader.NavMenu>
                 <MainHeader.NavItem>
